@@ -10,4 +10,6 @@ body {
 
 pre {
   margin: 0;
+  overflow: auto;
+  max-height: 100vh;
 }
