@@ -31,7 +31,7 @@ export const logs = flatten(
         service: any(services),
         message: any(messages),
         timestamp: `2019-10-31T15:46:42.${String(i).padStart(3, "0")}Z`,
-        delay: random(0, 10)
+        delay: random(0, 100)
       };
     })
     .map(l => {

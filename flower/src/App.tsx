@@ -1,24 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
 import "./App.css";
 
-import Overview from "./routes/Overview";
-import Graph from "./routes/Graph";
-import Logs from "./routes/Logs";
+import OverviewRoute from "./routes/OverviewRoute";
+import GraphRoute from "./routes/GraphRoute";
+import LogsRoute from "./routes/LogsRoute";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
     <Router>
       <Switch>
         <Route path="/graph">
-          <Graph />
+          <GraphRoute />
         </Route>
         <Route path="/logs">
-          <Logs />
+          <LogsRoute />
         </Route>
         <Route path="/">
-          <Overview />
+          <OverviewRoute />
         </Route>
       </Switch>
     </Router>

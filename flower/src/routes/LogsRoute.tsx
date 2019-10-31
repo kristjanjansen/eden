@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import PromiseQueue from "easy-promise-queue";
 
 import Layout from "../containers/Layout";
@@ -9,7 +9,7 @@ import { logs } from "../data/logs";
 
 let pq = new PromiseQueue({ concurrency: 1 });
 
-const Logs: React.FC = () => {
+const LogsRoute: FC = () => {
   const [log, addLog] = useState([]);
   useEffect(() => {
     logs.forEach(({ message, delay }: any) =>
@@ -31,4 +31,4 @@ const Logs: React.FC = () => {
   );
 };
 
-export default Logs;
+export default LogsRoute;

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 
 import Layout from "../containers/Layout";
 
-const Oveview: React.FC = () => {
+const Oveview: FC = () => {
   return <Layout>Overview</Layout>;
 };
 

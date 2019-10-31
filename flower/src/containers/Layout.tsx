@@ -1,40 +1,27 @@
-import React, { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import React, { FC } from "react";
+
+import Menu from "../components/Menu";
 
 import { colors } from "../styles/variables";
 
-const Menu: React.FC = () => (
-  <div style={{ padding: "10px 0" }}>
-    {[
-      { to: "/", title: "Oveview" },
-      { to: "/graph", title: "Graph" },
-      { to: "/logs", title: "Logs" }
-    ].map(({ to, title }, i) => (
-      <Link
-        key={i}
-        to={to}
-        style={{
-          display: "block",
-          padding: "10px 20px",
-          textDecoration: "none",
-          color: "gray"
-        }}
-      >
-        {title}
-      </Link>
-    ))}
-  </div>
-);
-
-const Layout: React.FC<{
+const Layout: FC<{
   children?: any;
-}> = ({ children }) => {
+  padded?: boolean;
+}> = ({ children, padded = false }) => {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <div style={{ width: "200px", boxShadow: "5px 0 10px rgba(0,0,0,0.05)" }}>
         <Menu />
       </div>
-      <div style={{ flex: 1, background: colors.lightestGray }}>{children}</div>
+      <div
+        style={{
+          flex: 1,
+          background: colors.lightestGray,
+          padding: padded ? "20px" : ""
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 };
