@@ -6,10 +6,11 @@ import Graph from "../components/Graph";
 
 const elk = new ELK();
 
-const algorithms = ["layered", "stress", "mrtree", "radial", "force", "disco"];
 const graph = {
   id: "root",
-  layoutOptions: { "elk.algorithm": algorithms[0] }, // layered
+  layoutOptions: {
+    "elk.algorithm": "layered"
+  }, // layered
   children: [
     { id: "n1", width: 200, height: 150 },
     { id: "n2", width: 200, height: 150 },
@@ -44,7 +45,7 @@ const GraphRoute: FC = () => {
     generateGraph();
   }, []);
 
-  return <Layout padded>{<Graph layout={layout} />}</Layout>;
+  return <Layout>{<Graph layout={layout} />}</Layout>;
 };
 
 export default GraphRoute;

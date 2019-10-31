@@ -22,7 +22,8 @@ const GraphHtml = ({ layout }: any) => {
       style={{
         position: "relative",
         width: `${width}px`,
-        height: `${height}px`
+        height: `${height}px`,
+        transform: "scale(1)"
       }}
     >
       {edges && (
@@ -133,7 +134,7 @@ const GraphSvg = ({ layout }: any) => {
 
 const Graph: FC<{ layout: any }> = ({ layout }) => {
   return (
-    <div>
+    <div style={{ overflow: "auto", height: "100vh" }}>
       <GraphHtml layout={layout} />
       <GraphSvg layout={layout} />
       <pre>{JSON.stringify(layout, null, 2)}</pre>
