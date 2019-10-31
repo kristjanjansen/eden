@@ -34,7 +34,7 @@ const GraphHtml = ({ layout }: any) => {
                 <path
                   key={j}
                   d={sectionLine(s) || ""}
-                  opacity="0.25"
+                  opacity="0.1"
                   stroke-width="3"
                   stroke="black"
                   fill="none"
@@ -56,7 +56,7 @@ const GraphHtml = ({ layout }: any) => {
               height: `${height}px`
             }}
           >
-            <GraphCard>Hello, this is here a plain Html</GraphCard>
+            <GraphCard> This is a {i + 1}th HTML box and it is fine</GraphCard>
           </div>
         ))}
     </div>
@@ -67,22 +67,21 @@ const GraphSvg = ({ layout }: any) => {
   const { width, height, children, edges } = layout;
   if (children)
     return (
-      <svg width={width} height={height} style={{ background: "gray" }}>
+      <svg width={width} height={height}>
         {children &&
           children.map(({ x, y, width, height }: any, i: number) => (
             <g key={i}>
               <rect
                 x={x}
                 y={y}
-                cx="5"
-                cy="5"
+                rx="5"
+                ry="5"
                 width={width}
                 height={height}
-                stroke="black"
-                fill="red"
+                fill="white"
               />
               <text x={x + 10} y={y + 20}>
-                {i}
+                This is a {i + 1}th SVG box...
               </text>
             </g>
           ))}
@@ -93,9 +92,9 @@ const GraphSvg = ({ layout }: any) => {
                 <g key={j}>
                   <path
                     d={sectionLine(s) || ""}
-                    opacity="0.5"
-                    stoke-width="2"
-                    stroke="red"
+                    opacity="0.1"
+                    stroke-width="3"
+                    stroke="black"
                     fill="none"
                   />
                   <circle
@@ -112,15 +111,17 @@ const GraphSvg = ({ layout }: any) => {
                     fill="black"
                     opacity="0.5"
                   />
-                  {s.bendpoints &&
+                  {s.bendPoints &&
                     s.bendPoints.map(({ x, y }: any, k: number) => (
                       <circle
                         key={k}
                         cx={x}
                         cy={y}
-                        r="4"
-                        fill="black"
-                        opacity={0.5}
+                        r="5"
+                        fill="none"
+                        stroke="royalblue"
+                        stroke-width="3"
+                        opacity={0.8}
                       />
                     ))}
                 </g>
