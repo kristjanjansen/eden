@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Cousine&display=swap");
+body {
+  margin: 0;
+  font-family: Cousine, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
