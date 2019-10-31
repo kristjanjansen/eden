@@ -1,12 +1,33 @@
-import React from "react";
-import Log from "../components/Log";
+import React, { useState, useEffect } from "react";
+import PromiseQueue from "easy-promise-queue";
 
 import Layout from "../containers/Layout";
 
+import Log from "../components/Log";
+
+import { logs } from "../data/logs";
+
+let pq = new PromiseQueue({ concurrency: 1 });
+
 const Logs: React.FC = () => {
+  const [log, addLog] = useState([]);
+
+  useEffect(() => {
+    logs.forEach(({ message, delay }: any) =>
+      pq.add(
+        () =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              addLog((log: any) => [...log, message] as []);
+              resolve();
+            }, delay);
+          })
+      )
+    );
+  }, []);
   return (
     <Layout>
-      <Log items={["sample", "log", "output"]} />
+      <Log items={log} />
     </Layout>
   );
 };

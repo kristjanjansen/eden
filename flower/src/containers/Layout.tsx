@@ -1,6 +1,8 @@
 import React, { ReactElement } from "react";
 import { Link } from "react-router-dom";
 
+import { colors } from "../styles/variables";
+
 const Menu: React.FC = () => (
   <div style={{ padding: "10px 0" }}>
     {[
@@ -32,7 +34,7 @@ const Layout: React.FC<{
       <div style={{ width: "200px", boxShadow: "5px 0 10px rgba(0,0,0,0.05)" }}>
         <Menu />
       </div>
-      <div style={{ flex: 1, padding: "20px" }}>{children}</div>
+      <div style={{ flex: 1, background: colors.lightestGray }}>{children}</div>
     </div>
   );
 };

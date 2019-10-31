@@ -1,0 +1,13 @@
+{
+  "name": "next-gen-documentation",
+  "scripts": {
+    "docz:dev": "docz dev",
+    "docz:build": "docz build"
+  },
+  "dependencies": {
+    "docz": "latest",
+    "docz-theme-default": "^1.2.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
+  }
+}

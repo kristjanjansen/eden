@@ -1,6 +1,9 @@
 import React, { FC, useState, useEffect, useRef } from "react";
 
-const Log: FC<{ items?: any[] }> = ({ items = [] }) => {
+const Log: FC<{ items?: any[]; height?: any }> = ({
+  items = [],
+  height = "100vh"
+}) => {
   let log = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -16,18 +19,18 @@ const Log: FC<{ items?: any[] }> = ({ items = [] }) => {
   return (
     <div
       style={{
+        height,
         overflow: "scroll",
-        minHeight: "25vh",
         backgroundColor: "#333",
         color: "white",
-        fontSize: "13px",
+        fontSize: "14px",
         whiteSpace: "pre-wrap",
         padding: "20px",
         lineHeight: "20px"
       }}
     >
       {items.join("\n")}
-      <div ref={log} style={{ height: "" }}></div>
+      <div ref={log} style={{ height: "14px" }}></div>
     </div>
   );
 };
