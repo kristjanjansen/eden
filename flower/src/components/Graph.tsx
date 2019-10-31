@@ -8,7 +8,7 @@ const GraphSvg = ({ layout }: any) => {
       <svg
         width={width}
         height={height}
-        style={{ transform: "scale(2)", background: "gray" }}
+        style={{ transform: "scale(1.5)", background: "gray" }}
       >
         {children &&
           children.map(({ x, y, width, height }: any, i: number) => (
@@ -27,24 +27,44 @@ const GraphSvg = ({ layout }: any) => {
         {edges &&
           edges.map(({ sections }: any, i: number) => (
             <g key={i}>
-              {sections.map(({ startPoint, endPoint }: any, j: number) => (
-                <g key={i}>
-                  <circle
-                    cx={startPoint.x}
-                    cy={startPoint.y}
-                    r="3"
-                    fill="blue"
-                    opacity={1 / (i + 1)}
-                  />
-                  <circle
-                    cx={endPoint.x}
-                    cy={endPoint.y}
-                    r="3"
-                    fill="green"
-                    opacity={1 / (i + 1)}
-                  />
-                </g>
-              ))}
+              {sections.map(
+                ({ startPoint, endPoint, bendPoints = [] }: any, j: number) => (
+                  <g key={j}>
+                    <line
+                      x1={startPoint.x}
+                      y1={startPoint.y}
+                      x2={endPoint.x}
+                      y2={endPoint.y}
+                      opacity="0.5"
+                      stroke={["red", "green", "blue", "yellow"][i]}
+                    />
+                    <circle
+                      cx={startPoint.x}
+                      cy={startPoint.y}
+                      r="4"
+                      fill={["red", "green", "blue", "yellow"][i]}
+                      opacity="0.5"
+                    />
+                    <circle
+                      cx={endPoint.x}
+                      cy={endPoint.y}
+                      r="4"
+                      fill={["red", "green", "blue", "yellow"][i]}
+                      opacity="0.5"
+                    />
+                    {bendPoints.map(({ x, y }: any, k: number) => (
+                      <circle
+                        key={k}
+                        cx={x}
+                        cy={y}
+                        r="4"
+                        fill={["red", "green", "blue", "yellow"][i]}
+                        opacity={0.5}
+                      />
+                    ))}
+                  </g>
+                )
+              )}
             </g>
           ))}
       </svg>

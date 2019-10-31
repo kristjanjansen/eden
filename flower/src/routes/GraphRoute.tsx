@@ -8,15 +8,18 @@ const elk = new ELK();
 
 const graph = {
   id: "root",
-  layoutOptions: { "elk.algorithm": "layered" },
+  layoutOptions: { "elk.algorithm": "layered" }, // layered
   children: [
     { id: "n1", width: 30, height: 30 },
     { id: "n2", width: 30, height: 30 },
-    { id: "n3", width: 30, height: 30 }
+    { id: "n3", width: 30, height: 30 },
+    { id: "n4", width: 30, height: 30 }
   ],
   edges: [
     { id: "e1", sources: ["n1"], targets: ["n2"] },
-    { id: "e2", sources: ["n1"], targets: ["n3"] }
+    { id: "e2", sources: ["n1"], targets: ["n3"] },
+    { id: "e3", sources: ["n1"], targets: ["n4"] },
+    { id: "e4", sources: ["n2"], targets: ["n4"] }
   ]
 };
 
