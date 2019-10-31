@@ -1,9 +1,10 @@
 import React, { FC, useEffect } from "react";
 import { line, curveCardinal } from "d3-shape";
 import { relative } from "path";
+import GraphCard from "./GraphCard";
 
 const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
-  const makeLine = line().curve(curveCardinal.tension(0.85));
+  const makeLine = line().curve(curveCardinal.tension(0.8));
   const start: [number, number] = [startPoint.x, startPoint.y];
   const end: [number, number] = [endPoint.x, endPoint.y];
 
@@ -51,14 +52,10 @@ const GraphHtml = ({ layout }: any) => {
               top: `${y}px`,
               left: `${x}px`,
               width: `${width}px`,
-              height: `${height}px`,
-              background: "red",
-              border: "1px solid black",
-              padding: "10px",
-              opacity: 0.5
+              height: `${height}px`
             }}
           >
-            {i}
+            <GraphCard>Hello, this is here a plain Html</GraphCard>
           </div>
         ))}
     </div>
@@ -138,8 +135,6 @@ const Graph: FC<{ layout: any }> = ({ layout }) => {
   return (
     <div>
       <GraphHtml layout={layout} />
-      <br />
-      <br />
       <GraphSvg layout={layout} />
       <pre>{JSON.stringify(layout, null, 2)}</pre>
     </div>

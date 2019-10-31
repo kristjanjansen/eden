@@ -16,7 +16,7 @@ const Layout: FC<{
       <div
         style={{
           flex: 1,
-          background: colors.lightestGray,
+          background: colors.lighterGray,
           padding: padded ? "20px" : ""
         }}
       >
