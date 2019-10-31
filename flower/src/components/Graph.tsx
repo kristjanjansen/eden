@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from "react";
-import { line, curveBundle } from "d3-shape";
+import { line, curveCardinal } from "d3-shape";
 import { relative } from "path";
 
 const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
-  const makeLine = line().curve(curveBundle.beta(1));
+  const makeLine = line().curve(curveCardinal.tension(0.85));
   const start: [number, number] = [startPoint.x, startPoint.y];
   const end: [number, number] = [endPoint.x, endPoint.y];
 
@@ -21,10 +21,27 @@ const GraphHtml = ({ layout }: any) => {
       style={{
         position: "relative",
         width: `${width}px`,
-        height: `${height}px`,
-        background: "gray"
+        height: `${height}px`
       }}
     >
+      {edges && (
+        <svg width={width} height={height} style={{ position: "absolute" }}>
+          {edges.map(({ sections }: any, i: number) => (
+            <g key={i}>
+              {sections.map((s: any, j: number) => (
+                <path
+                  key={j}
+                  d={sectionLine(s) || ""}
+                  opacity="0.25"
+                  stroke-width="3"
+                  stroke="black"
+                  fill="none"
+                />
+              ))}
+            </g>
+          ))}
+        </svg>
+      )}
       {children &&
         children.map(({ x, y, width, height }: any, i: number) => (
           <div
@@ -37,8 +54,8 @@ const GraphHtml = ({ layout }: any) => {
               height: `${height}px`,
               background: "red",
               border: "1px solid black",
-              opacity: 0.5,
-              padding: "10px"
+              padding: "10px",
+              opacity: 0.5
             }}
           >
             {i}
@@ -83,14 +100,6 @@ const GraphSvg = ({ layout }: any) => {
                     stroke="red"
                     fill="none"
                   />
-                  {/* <line
-                    x1={s.startPoint.x}
-                    y1={s.startPoint.y}
-                    x2={s.endPoint.x}
-                    y2={s.endPoint.y}
-                    opacity="0.5"
-                    stroke={["red", "green", "blue", "yellow"][i]}
-                  /> */}
                   <circle
                     cx={s.startPoint.x}
                     cy={s.startPoint.y}
