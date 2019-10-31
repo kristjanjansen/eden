@@ -27,32 +27,32 @@ const GraphSvg = ({ layout }: any) => {
         {edges &&
           edges.map(({ sections }: any, i: number) => (
             <g key={i}>
-              {sections.map(
-                ({ startPoint, endPoint, bendPoints = [] }: any, j: number) => (
-                  <g key={j}>
-                    <line
-                      x1={startPoint.x}
-                      y1={startPoint.y}
-                      x2={endPoint.x}
-                      y2={endPoint.y}
-                      opacity="0.5"
-                      stroke={["red", "green", "blue", "yellow"][i]}
-                    />
-                    <circle
-                      cx={startPoint.x}
-                      cy={startPoint.y}
-                      r="4"
-                      fill={["red", "green", "blue", "yellow"][i]}
-                      opacity="0.5"
-                    />
-                    <circle
-                      cx={endPoint.x}
-                      cy={endPoint.y}
-                      r="4"
-                      fill={["red", "green", "blue", "yellow"][i]}
-                      opacity="0.5"
-                    />
-                    {bendPoints.map(({ x, y }: any, k: number) => (
+              {sections.map((s: any, j: number) => (
+                <g key={j}>
+                  <line
+                    x1={s.startPoint.x}
+                    y1={s.startPoint.y}
+                    x2={s.endPoint.x}
+                    y2={s.endPoint.y}
+                    opacity="0.5"
+                    stroke={["red", "green", "blue", "yellow"][i]}
+                  />
+                  <circle
+                    cx={s.startPoint.x}
+                    cy={s.startPoint.y}
+                    r="4"
+                    fill={["red", "green", "blue", "yellow"][i]}
+                    opacity="0.5"
+                  />
+                  <circle
+                    cx={s.endPoint.x}
+                    cy={s.endPoint.y}
+                    r="4"
+                    fill={["red", "green", "blue", "yellow"][i]}
+                    opacity="0.5"
+                  />
+                  {s.bendPoints &&
+                    s.bendPoints.map(({ x, y }: any, k: number) => (
                       <circle
                         key={k}
                         cx={x}
@@ -62,9 +62,8 @@ const GraphSvg = ({ layout }: any) => {
                         opacity={0.5}
                       />
                     ))}
-                  </g>
-                )
-              )}
+                </g>
+              ))}
             </g>
           ))}
       </svg>
@@ -72,19 +71,21 @@ const GraphSvg = ({ layout }: any) => {
   return <div></div>;
 };
 
-// const calculateLines = (edges: any) => {
-//   return edges.map(({ sections }: any) => {
-//     if (sections.bendPoints) {
+const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
+  const start: [number, number] = [startPoint.x, startPoint.y];
+  const end: [number, number] = [endPoint.x, endPoint.y];
+  const makeLine = line();
+  return makeLine([start, end]);
+};
 
-//     }
-//     return [e.sections
-//   });
-// };
-
-const Graph: FC<{ layout: object }> = ({ layout }) => {
+const Graph: FC<{ layout: any }> = ({ layout }) => {
   return (
     <div>
       <GraphSvg layout={layout} />
+      <pre>
+        {layout.edges &&
+          JSON.stringify(sectionLine(layout.edges[0].sections[0]), null, 2)}
+      </pre>
       <pre>{JSON.stringify(layout, null, 2)}</pre>
     </div>
   );
