@@ -11,7 +11,6 @@ let pq = new PromiseQueue({ concurrency: 1 });
 
 const Logs: React.FC = () => {
   const [log, addLog] = useState([]);
-
   useEffect(() => {
     logs.forEach(({ message, delay }: any) =>
       pq.add(

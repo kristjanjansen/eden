@@ -1,5 +1,7 @@
 import React, { FC, useState, useEffect, useRef } from "react";
 
+import { colors } from "../styles/variables";
+
 const Log: FC<{ items?: any[]; height?: any }> = ({
   items = [],
   height = "100vh"
@@ -21,7 +23,7 @@ const Log: FC<{ items?: any[]; height?: any }> = ({
       style={{
         height,
         overflow: "scroll",
-        backgroundColor: "#333",
+        backgroundColor: colors.darkestGray,
         color: "white",
         fontSize: "14px",
         whiteSpace: "pre-wrap",

@@ -1,4 +1,5 @@
 export const colors = {
+  darkestGray: "hsl(208,20%,18%)",
   darkerGray: "hsl(208,20%,28%)",
   darkGray: "hsl(208,20%,43%)",
   gray: "hsl(208,20%,58%)",
