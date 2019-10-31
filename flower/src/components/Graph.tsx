@@ -1,8 +1,9 @@
 import React, { FC, useEffect } from "react";
-import { line } from "d3-shape";
+import { line, curveBundle } from "d3-shape";
+import { relative } from "path";
 
 const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
-  const makeLine = line();
+  const makeLine = line().curve(curveBundle.beta(1));
   const start: [number, number] = [startPoint.x, startPoint.y];
   const end: [number, number] = [endPoint.x, endPoint.y];
 
@@ -13,70 +14,110 @@ const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
   return makeLine([start, end]);
 };
 
+const GraphHtml = ({ layout }: any) => {
+  const { width, height, children, edges } = layout;
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: `${width}px`,
+        height: `${height}px`,
+        background: "gray"
+      }}
+    >
+      {children &&
+        children.map(({ x, y, width, height }: any, i: number) => (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              top: `${y}px`,
+              left: `${x}px`,
+              width: `${width}px`,
+              height: `${height}px`,
+              background: "red",
+              border: "1px solid black",
+              opacity: 0.5,
+              padding: "10px"
+            }}
+          >
+            {i}
+          </div>
+        ))}
+    </div>
+  );
+};
+
 const GraphSvg = ({ layout }: any) => {
   const { width, height, children, edges } = layout;
   if (children)
     return (
-      <svg
-        width={width}
-        height={height}
-        style={{ transform: "scale(1.5)", background: "gray" }}
-      >
+      <svg width={width} height={height} style={{ background: "gray" }}>
         {children &&
           children.map(({ x, y, width, height }: any, i: number) => (
-            <rect
-              key={i}
-              x={x}
-              y={y}
-              cx="5"
-              cy="5"
-              width={width}
-              height={height}
-              stroke="black"
-              fill="red"
-            />
+            <g key={i}>
+              <rect
+                x={x}
+                y={y}
+                cx="5"
+                cy="5"
+                width={width}
+                height={height}
+                stroke="black"
+                fill="red"
+              />
+              <text x={x + 10} y={y + 20}>
+                {i}
+              </text>
+            </g>
           ))}
         {edges &&
           edges.map(({ sections }: any, i: number) => (
             <g key={i}>
-              {sections.map(
-                ({ startPoint, endPoint, bendPoints = [] }: any, j: number) => (
-                  <g key={j}>
-                    <line
-                      x1={startPoint.x}
-                      y1={startPoint.y}
-                      x2={endPoint.x}
-                      y2={endPoint.y}
-                      opacity="0.5"
-                      stroke={["red", "green", "blue", "yellow"][i]}
-                    />
-                    <circle
-                      cx={startPoint.x}
-                      cy={startPoint.y}
-                      r="4"
-                      fill={["red", "green", "blue", "yellow"][i]}
-                      opacity="0.5"
-                    />
-                    <circle
-                      cx={endPoint.x}
-                      cy={endPoint.y}
-                      r="4"
-                      fill={["red", "green", "blue", "yellow"][i]}
-                      opacity="0.5"
-                    />
-                    {bendPoints.map(({ x, y }: any, k: number) => (
+              {sections.map((s: any, j: number) => (
+                <g key={j}>
+                  <path
+                    d={sectionLine(s) || ""}
+                    opacity="0.5"
+                    stoke-width="2"
+                    stroke="red"
+                    fill="none"
+                  />
+                  {/* <line
+                    x1={s.startPoint.x}
+                    y1={s.startPoint.y}
+                    x2={s.endPoint.x}
+                    y2={s.endPoint.y}
+                    opacity="0.5"
+                    stroke={["red", "green", "blue", "yellow"][i]}
+                  /> */}
+                  <circle
+                    cx={s.startPoint.x}
+                    cy={s.startPoint.y}
+                    r="4"
+                    fill="black"
+                    opacity="0.5"
+                  />
+                  <circle
+                    cx={s.endPoint.x}
+                    cy={s.endPoint.y}
+                    r="4"
+                    fill="black"
+                    opacity="0.5"
+                  />
+                  {s.bendpoints &&
+                    s.bendPoints.map(({ x, y }: any, k: number) => (
                       <circle
                         key={k}
                         cx={x}
                         cy={y}
                         r="4"
-                        fill={["red", "green", "blue", "yellow"][i]}
+                        fill="black"
                         opacity={0.5}
                       />
                     ))}
-                  </g>
-                )
-              )}
+                </g>
+              ))}
             </g>
           ))}
       </svg>
@@ -87,11 +128,10 @@ const GraphSvg = ({ layout }: any) => {
 const Graph: FC<{ layout: any }> = ({ layout }) => {
   return (
     <div>
-      {/* <GraphSvg layout={layout} /> */}
-      <pre>
-        {layout.edges &&
-          JSON.stringify(sectionLine(layout.edges[0].sections[0]), null, 2)}
-      </pre>
+      <GraphHtml layout={layout} />
+      <br />
+      <br />
+      <GraphSvg layout={layout} />
       <pre>{JSON.stringify(layout, null, 2)}</pre>
     </div>
   );
