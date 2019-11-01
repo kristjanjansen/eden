@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { line, curveCardinal } from "d3-shape";
+
 import GraphCard from "./GraphCard";
+import { colors } from "../styles/variables";
 
 const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
   const makeLine = line().curve(curveCardinal.tension(0.95));
@@ -32,7 +34,7 @@ const GraphHtml = ({ layout, zoom = 1, onSelect }: any) => {
                 <path
                   key={j}
                   d={sectionLine(s) || ""}
-                  opacity="0.1"
+                  opacity="0.2"
                   strokeWidth="3"
                   stroke="black"
                   fill="none"

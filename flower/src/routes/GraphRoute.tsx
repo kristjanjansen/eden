@@ -8,7 +8,6 @@ import { randomNodes, randomEdges } from "../data/graph";
 
 const elk = new ELK();
 
-// [ 'layered', 'stress', 'mrtree', 'radial', 'force', 'disco' ]
 const graph = {
   id: "root",
   layoutOptions: {

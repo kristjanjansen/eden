@@ -22,11 +22,12 @@ const GraphCard: FC<{
     test: "Running tests"
   };
   const { module, service, state, status } = node;
+  const dark = true;
   return (
     <div
       style={{
-        opacity: status == "pending" || status == "cancelled" ? 0.25 : 1,
-        background: "white",
+        opacity: status == "pending" || status == "cancelled" ? 0.4 : 1,
+        background: dark ? colors.darkestGray : "white",
         borderRadius: "5px",
         boxShadow: "0 0 2px 2px rgba(0,0,0,0.05)",
         height: "100%",
@@ -52,14 +53,14 @@ const GraphCard: FC<{
               fontFamily: "Inter, sans-serif",
               fontWeight: 600,
               fontSize: "20px",
-              color: colors.lightGray
+              color: dark ? colors.gray : colors.lightGray
             }}
           >
-            {stateTitles["deploy"]}
+            {stateTitles[state]}
           </div>
           <div
             style={{
-              color: colors.darkGray,
+              color: dark ? colors.lightGray : colors.darkGray,
               // borderBottom: "1px solid",
               // borderBottomColor: colors.lighterGray,
               padding: "7px 10px 14px 10px",
@@ -67,14 +68,20 @@ const GraphCard: FC<{
             }}
           >
             {state == "build" ? (
-              <div style={{ fontWeight: "bold" }}>{module}</div>
+              <div style={{ fontWeight: dark ? "bold" : "normal" }}>
+                {module}
+              </div>
             ) : (
               <div>
-                <span style={{ opacity: 0.5, fontWeight: "bold" }}>
+                <span
+                  style={{ opacity: 0.5, fontWeight: dark ? "bold" : "normal" }}
+                >
                   {module}
                 </span>{" "}
                 <span style={{ opacity: 0.5 }}>/</span>{" "}
-                <span style={{ fontWeight: "bold" }}>{service}</span>
+                <span style={{ fontWeight: dark ? "bold" : "normal" }}>
+                  {service}
+                </span>
               </div>
             )}
           </div>
@@ -82,14 +89,19 @@ const GraphCard: FC<{
 
         <div
           style={{
-            background: status == "error" ? colors.pink : colors.lightestGray,
-            color: colors.darkGray,
+            background: dark
+              ? colors.darkerGray
+              : status == "error"
+              ? colors.pink
+              : colors.lighterGray,
+            color: dark ? colors.lighterGray : colors.gray,
             // borderTop: "1px solid",
             //borderTopColor: colors.lighterGray,
-            padding: "10px",
+            padding: "8px 10px",
             display: "flex",
             alignItems: "center",
-            boxShadow: "inset 0 -1px 5px 0px rgba(0,0,0,0.05)"
+            boxShadow: "inset 0 -1px 5px 0px rgba(0,0,0,0.05)",
+            fontFamily: "Inter, sans-serif"
           }}
         >
           <Status status={status} />
