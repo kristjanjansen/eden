@@ -17,10 +17,21 @@ const Layout: FC<{
         style={{
           flex: 1,
           background: colors.lighterGray,
-          padding: padded ? "20px" : ""
+          padding: padded ? "20px" : "",
+          display: "relative",
+          overflow: "auto"
         }}
       >
         {children}
+      </div>
+      <div
+        style={{
+          width: "400px",
+          boxShadow: "-5px 0 10px rgba(0,0,0,0.05)",
+          padding: "20px"
+        }}
+      >
+        <div>a</div>
       </div>
     </div>
   );

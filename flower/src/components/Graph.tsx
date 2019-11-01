@@ -1,6 +1,5 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { line, curveCardinal } from "d3-shape";
-import { relative } from "path";
 import GraphCard from "./GraphCard";
 
 const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
@@ -15,15 +14,14 @@ const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
   return makeLine([start, end]);
 };
 
-const GraphHtml = ({ layout }: any) => {
+const GraphHtml = ({ layout, zoom = 1 }: any) => {
   const { width, height, children, edges } = layout;
   return (
     <div
       style={{
-        position: "relative",
         width: `${width}px`,
         height: `${height}px`,
-        transform: "scale(1)"
+        transform: `scale(${zoom})`
       }}
     >
       {edges && (
@@ -35,7 +33,7 @@ const GraphHtml = ({ layout }: any) => {
                   key={j}
                   d={sectionLine(s) || ""}
                   opacity="0.1"
-                  stroke-width="3"
+                  strokeWidth="3"
                   stroke="black"
                   fill="none"
                 />
@@ -93,7 +91,7 @@ const GraphSvg = ({ layout }: any) => {
                   <path
                     d={sectionLine(s) || ""}
                     opacity="0.1"
-                    stroke-width="3"
+                    strokeWidth="3"
                     stroke="black"
                     fill="none"
                   />
@@ -102,7 +100,7 @@ const GraphSvg = ({ layout }: any) => {
                     cy={s.startPoint.y}
                     fill="none"
                     stroke="royalblue"
-                    stroke-width="2"
+                    strokeWidth="2"
                     opacity={0.6}
                   />
                   <circle
@@ -136,12 +134,46 @@ const GraphSvg = ({ layout }: any) => {
   return <div></div>;
 };
 
+const Slider: FC<{
+  value?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  onChange?: Function;
+}> = ({ value = 0, min = 0, max = 100, step = 1, onChange = () => null }) => (
+  <input
+    type="range"
+    min={min}
+    max={max}
+    step={step}
+    value={value}
+    onChange={e => onChange(parseFloat(e.target.value))}
+  />
+);
+
 const Graph: FC<{ layout: any }> = ({ layout }) => {
+  const [zoom, setZoom] = useState(1);
   return (
-    <div style={{ overflow: "auto", height: "100vh" }}>
-      <GraphHtml layout={layout} />
-      <GraphSvg layout={layout} />
-      <pre>{JSON.stringify(layout, null, 2)}</pre>
+    <div>
+      <GraphHtml layout={layout} zoom={zoom} />
+      {/* <GraphSvg layout={layout} /> */}
+      {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}
+      <div
+        style={{
+          position: "absolute",
+          left: "220px",
+          bottom: "20px",
+          width: "200px"
+        }}
+      >
+        <Slider
+          value={zoom}
+          min={0.3}
+          max={1}
+          step={0.01}
+          onChange={(zoom: number) => setZoom(zoom)}
+        />
+      </div>
     </div>
   );
 };

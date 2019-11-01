@@ -14,7 +14,7 @@ const GraphCard: FC<{
       style={{
         background: "white",
         borderRadius: "5px",
-        boxShadow: "0 0 1px 1px rgba(0,0,0,0.05)",
+        boxShadow: "0 0 2px 2px rgba(0,0,0,0.05)",
         height: "100%",
         padding: "10px",
         border: currentlyActive
