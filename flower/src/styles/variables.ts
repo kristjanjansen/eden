@@ -52,7 +52,8 @@ export const colors = {
   gray: "hsl(208,20%,58%)",
   lightGray: "hsl(208,20%,76%)",
   lighterGray: "hsl(208,20%,88%)",
-  lightestGray: "hsl(208,20%,95%)"
+  lightestGray: "hsl(208,20%,95%)",
+  pink: "hsl(0,50%,95%)"
 };
 
 // https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
