@@ -15,7 +15,7 @@ const Layout: FC<{
   children,
   padded = false,
   details = null,
-  showDetails = true,
+  showDetails = false,
   onClose = () => null
 }) => {
   return (

@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 
 import Layout from "../containers/Layout";
-import StatusSpinner from "../components/StatusSpinner";
 import GraphCard from "../components/GraphCard";
 import Status from "../components/Status";
 

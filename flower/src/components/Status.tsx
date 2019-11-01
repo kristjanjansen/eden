@@ -50,7 +50,30 @@ const moonStatuses = {
     character: "⚠️"
   }
 };
-const statuses = moonStatuses;
+
+const circleStatuses = {
+  pending: {
+    color: "gray",
+    character: "⬤"
+  },
+  processing: {
+    color: ansiColors.green,
+    character: <StatusSpinner spinner="circleHalves" />
+  },
+  done: {
+    color: ansiColors.green,
+    character: "⬤"
+  },
+  cancelled: {
+    color: "gray",
+    character: "⬤"
+  },
+  error: {
+    color: ansiColors.red,
+    character: "⬤"
+  }
+};
+const statuses = circleStatuses;
 
 const Status: FC<{
   status?: "pending" | "processing" | "done" | "cancelled" | "error";
@@ -58,7 +81,8 @@ const Status: FC<{
   return (
     <div
       style={{
-        color: statuses[status].color
+        color: statuses[status].color,
+        fontSize: "10px"
       }}
     >
       {statuses[status].character}

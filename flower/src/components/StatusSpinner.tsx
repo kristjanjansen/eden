@@ -18,7 +18,7 @@ const StatusSpinner: FC<{ spinner?: string }> = ({ spinner = "dots" }) => {
     }
   }, interval);
 
-  return <div>{frames[frame]}</div>;
+  return <div style={{ fontSize: "12px" }}>{frames[frame]}</div>;
 };
 
 export default StatusSpinner;
