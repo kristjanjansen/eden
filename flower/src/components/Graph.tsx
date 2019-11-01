@@ -3,7 +3,7 @@ import { line, curveCardinal } from "d3-shape";
 import GraphCard from "./GraphCard";
 
 const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
-  const makeLine = line().curve(curveCardinal.tension(0.8));
+  const makeLine = line().curve(curveCardinal.tension(0.95));
   const start: [number, number] = [startPoint.x, startPoint.y];
   const end: [number, number] = [endPoint.x, endPoint.y];
 
@@ -14,7 +14,7 @@ const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
   return makeLine([start, end]);
 };
 
-const GraphHtml = ({ layout, zoom = 1 }: any) => {
+const GraphHtml = ({ layout, zoom = 1, onSelect }: any) => {
   const { width, height, children, edges } = layout;
   return (
     <div
@@ -54,7 +54,10 @@ const GraphHtml = ({ layout, zoom = 1 }: any) => {
               height: `${height}px`
             }}
           >
-            <GraphCard> This is a {i + 1}th HTML box and it is fine</GraphCard>
+            <GraphCard onClick={() => onSelect(i)}>
+              {" "}
+              This is a {i + 1}th HTML box and it is fine
+            </GraphCard>
           </div>
         ))}
     </div>
@@ -153,9 +156,14 @@ const Slider: FC<{
 
 const Graph: FC<{ layout: any }> = ({ layout }) => {
   const [zoom, setZoom] = useState(1);
+  const [activeNode, setActiveNode] = useState(-1);
   return (
     <div>
-      <GraphHtml layout={layout} zoom={zoom} />
+      <GraphHtml
+        layout={layout}
+        zoom={zoom}
+        onSelect={(index: any) => console.log(index)}
+      />
       {/* <GraphSvg layout={layout} /> */}
       {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}
       <div
