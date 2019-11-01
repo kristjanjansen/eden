@@ -1,4 +1,5 @@
 import { flatten, random, any } from "../utils/utils";
+import { ansiColors } from "../styles/variables";
 
 const services = ["api", "vote", "db", "result", "redis", "javaworker"];
 
@@ -31,7 +32,22 @@ export const logs = flatten(
         service: any(services),
         message: any(messages),
         timestamp: `2019-10-31T15:46:42.${String(i).padStart(3, "0")}Z`,
-        delay: random(0, 100)
+        delay: random(0, 1),
+        color: any([
+          ansiColors.green,
+          ansiColors.cyan,
+          ansiColors.magenta,
+          "white",
+          "white",
+          "white",
+          "white",
+          "white",
+          "white",
+          "white",
+          "white",
+          "white",
+          "white"
+        ])
       };
     })
     .map(l => {

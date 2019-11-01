@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { useInterval } from "react-use";
 
-import { gardenColors, colors } from "../styles/variables";
+import { gardenColors, colors, ansiColors } from "../styles/variables";
 import Status from "./Status";
 
 const GraphCard: FC<{
@@ -60,7 +60,7 @@ const GraphCard: FC<{
           </div>
           <div
             style={{
-              color: dark ? colors.lightGray : colors.darkGray,
+              color: dark ? ansiColors.cyan : colors.darkGray,
               // borderBottom: "1px solid",
               // borderBottomColor: colors.lighterGray,
               padding: "8px 10px 14px 10px",
