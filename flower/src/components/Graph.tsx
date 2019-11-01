@@ -154,15 +154,17 @@ const Slider: FC<{
   />
 );
 
-const Graph: FC<{ layout: any }> = ({ layout }) => {
+const Graph: FC<{ layout: any; setNode?: Function }> = ({
+  layout,
+  setNode = () => null
+}) => {
   const [zoom, setZoom] = useState(1);
-  const [activeNode, setActiveNode] = useState(-1);
   return (
     <div>
       <GraphHtml
         layout={layout}
         zoom={zoom}
-        onSelect={(index: any) => console.log(index)}
+        onSelect={(index: any) => setNode(index)}
       />
       {/* <GraphSvg layout={layout} /> */}
       {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}

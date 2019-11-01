@@ -9,16 +9,18 @@ const Details: FC<{ children?: any; onClose?: Function }> = ({
       <div
         style={{
           position: "absolute",
-          top: "20px",
-          right: "20px",
+          top: "0px",
+          right: "0px",
           fontSize: "20px",
           cursor: "pointer",
-          color: "gray"
+          color: "gray",
+          padding: "20px"
         }}
         onClick={() => onClose()}
       >
         ×
       </div>
+      <div style={{ padding: "20px" }}>{children}</div>
     </div>
   );
 };

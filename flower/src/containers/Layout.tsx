@@ -9,9 +9,15 @@ const Layout: FC<{
   children?: any;
   details?: any;
   padded?: boolean;
-}> = ({ children, padded = false, details = null }) => {
-  const [showDetails, setShowDetails] = useState(true);
-
+  showDetails?: boolean;
+  onClose?: Function;
+}> = ({
+  children,
+  padded = false,
+  details = null,
+  showDetails = true,
+  onClose = () => null
+}) => {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <div style={{ width: "200px", boxShadow: "5px 0 10px rgba(0,0,0,0.05)" }}>
@@ -31,12 +37,11 @@ const Layout: FC<{
       {showDetails && (
         <div
           style={{
-            width: "300px",
-            boxShadow: "-5px 0 10px rgba(0,0,0,0.05)",
-            zIndex: 1
+            width: "500px",
+            boxShadow: "-5px 0 10px rgba(0,0,0,0.1)"
           }}
         >
-          <Details onClose={() => setShowDetails(false)}>{showDetails}</Details>
+          <Details onClose={() => onClose()}>{details}</Details>
         </div>
       )}
     </div>
