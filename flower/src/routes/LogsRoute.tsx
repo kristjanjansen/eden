@@ -12,14 +12,14 @@ let pq = new PromiseQueue({ concurrency: 1 });
 const LogsRoute: FC = () => {
   const [log, addLog] = useState([]);
   useEffect(() => {
-    logs.forEach(({ message, delay }: any) =>
+    logs.forEach((line: any) =>
       pq.add(
         () =>
           new Promise(resolve => {
             setTimeout(() => {
-              addLog((log: any) => [...log, message] as []);
+              addLog((log: any) => [...log, line] as []);
               resolve();
-            }, delay);
+            }, line.delay);
           })
       )
     );
