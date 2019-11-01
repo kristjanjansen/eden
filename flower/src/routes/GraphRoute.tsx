@@ -14,7 +14,7 @@ const graph = {
   layoutOptions: {
     "elk.algorithm": "layered"
   },
-  children: randomNodes(20, { width: 200, height: 150 }),
+  children: randomNodes(20, { width: 200, height: 105 }),
   edges: randomEdges(20)
 };
 

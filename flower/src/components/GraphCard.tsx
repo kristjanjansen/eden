@@ -11,7 +11,16 @@ const GraphCard: FC<{
   onClick?: Function;
 }> = ({ active = false, node = {}, onClick = () => null }) => {
   const [currentlyActive, setCurrentlyActive] = useState(false);
+
   useEffect(() => setCurrentlyActive(active), [active]);
+
+  const [opacity, setOpacity] = useState(1);
+  const stateTitles = {
+    build: "Building",
+    deploy: "Deploying",
+    run: "Running a task",
+    test: "Running tests"
+  };
   const { module, service, state, status } = node;
   return (
     <div
@@ -33,48 +42,54 @@ const GraphCard: FC<{
     >
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr",
-          gridTemplateRows: "30px 1fr 30px",
-          gridGap: "5px",
           height: "100%"
         }}
       >
-        <div
-          style={{
-            color: colors.darkGray,
-            borderBottom: "1px solid",
-            borderBottomColor: colors.lighterGray,
-            padding: "8px",
-            fontWeight: "bold"
-          }}
-        >
-          {state == "build" ? (
-            <div style={{ fontWeight: "bold" }}>{module}</div>
-          ) : (
-            <div>
-              <span style={{ opacity: 0.5, fontWeight: "bold" }}>{module}</span>{" "}
-              / <span style={{ fontWeight: "bold" }}>{service}</span>
-            </div>
-          )}
+        <div>
+          <div
+            style={{
+              padding: "10px 10px 0px 10px",
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 600,
+              fontSize: "20px",
+              color: colors.lightGray
+            }}
+          >
+            {stateTitles["deploy"]}
+          </div>
+          <div
+            style={{
+              color: colors.darkGray,
+              // borderBottom: "1px solid",
+              // borderBottomColor: colors.lighterGray,
+              padding: "7px 10px 14px 10px",
+              fontWeight: "bold"
+            }}
+          >
+            {state == "build" ? (
+              <div style={{ fontWeight: "bold" }}>{module}</div>
+            ) : (
+              <div>
+                <span style={{ opacity: 0.5, fontWeight: "bold" }}>
+                  {module}
+                </span>{" "}
+                <span style={{ opacity: 0.5 }}>/</span>{" "}
+                <span style={{ fontWeight: "bold" }}>{service}</span>
+              </div>
+            )}
+          </div>
         </div>
+
         <div
           style={{
+            background: status == "error" ? colors.pink : colors.lightestGray,
             color: colors.darkGray,
-            padding: "8px"
-          }}
-        >
-          {state}
-        </div>
-        <div
-          style={{
-            background: colors.lightestGray,
-            color: colors.darkGray,
-            borderTop: "1px solid",
-            borderTopColor: colors.lighterGray,
-            padding: "8px",
+            // borderTop: "1px solid",
+            //borderTopColor: colors.lighterGray,
+            padding: "10px",
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
+            boxShadow: "inset 0 -1px 5px 0px rgba(0,0,0,0.05)"
           }}
         >
           <Status status={status} />
