@@ -1,13 +1,15 @@
 import React, { FC } from "react";
 
 import Menu from "../components/Menu";
+import Details from "../components/Details";
 
 import { colors } from "../styles/variables";
 
 const Layout: FC<{
   children?: any;
+  details?: any;
   padded?: boolean;
-}> = ({ children, padded = false }) => {
+}> = ({ children, padded = false, details = null }) => {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <div style={{ width: "200px", boxShadow: "5px 0 10px rgba(0,0,0,0.05)" }}>
@@ -18,7 +20,7 @@ const Layout: FC<{
           flex: 1,
           background: colors.lighterGray,
           padding: padded ? "20px" : "",
-          display: "relative",
+          position: "relative",
           overflow: "auto"
         }}
       >
@@ -27,11 +29,10 @@ const Layout: FC<{
       <div
         style={{
           width: "400px",
-          boxShadow: "-5px 0 10px rgba(0,0,0,0.05)",
-          padding: "20px"
+          boxShadow: "-5px 0 10px rgba(0,0,0,0.05)"
         }}
       >
-        <div>a</div>
+        <Details>{details}</Details>
       </div>
     </div>
   );

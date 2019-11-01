@@ -161,7 +161,7 @@ const Graph: FC<{ layout: any }> = ({ layout }) => {
       <div
         style={{
           position: "absolute",
-          left: "220px",
+          right: "20px",
           bottom: "20px",
           width: "200px"
         }}
