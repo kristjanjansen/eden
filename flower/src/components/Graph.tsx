@@ -100,16 +100,19 @@ const GraphSvg = ({ layout }: any) => {
                   <circle
                     cx={s.startPoint.x}
                     cy={s.startPoint.y}
-                    r="4"
-                    fill="black"
-                    opacity="0.5"
+                    fill="none"
+                    stroke="royalblue"
+                    stroke-width="2"
+                    opacity={0.6}
                   />
                   <circle
                     cx={s.endPoint.x}
                     cy={s.endPoint.y}
                     r="4"
-                    fill="black"
-                    opacity="0.5"
+                    fill="none"
+                    stroke="royalblue"
+                    strokeWidth="2"
+                    opacity={0.6}
                   />
                   {s.bendPoints &&
                     s.bendPoints.map(({ x, y }: any, k: number) => (
@@ -117,11 +120,11 @@ const GraphSvg = ({ layout }: any) => {
                         key={k}
                         cx={x}
                         cy={y}
-                        r="5"
+                        r="4"
                         fill="none"
                         stroke="royalblue"
-                        stroke-width="3"
-                        opacity={0.8}
+                        strokeWidth="2"
+                        opacity={0.6}
                       />
                     ))}
                 </g>
