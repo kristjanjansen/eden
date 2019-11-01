@@ -15,7 +15,7 @@ const Details: FC<{ children?: any; onClose?: Function }> = ({
           cursor: "pointer",
           color: "gray"
         }}
-        onClick={() => onClose}
+        onClick={() => onClose()}
       >
         ×
       </div>

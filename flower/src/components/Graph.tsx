@@ -160,8 +160,8 @@ const Graph: FC<{ layout: any }> = ({ layout }) => {
       {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}
       <div
         style={{
-          position: "absolute",
-          right: "20px",
+          position: "fixed",
+          left: "220px",
           bottom: "20px",
           width: "200px"
         }}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import Menu from "../components/Menu";
 import Details from "../components/Details";
@@ -10,6 +10,8 @@ const Layout: FC<{
   details?: any;
   padded?: boolean;
 }> = ({ children, padded = false, details = null }) => {
+  const [showDetails, setShowDetails] = useState(true);
+
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <div style={{ width: "200px", boxShadow: "5px 0 10px rgba(0,0,0,0.05)" }}>
@@ -26,14 +28,17 @@ const Layout: FC<{
       >
         {children}
       </div>
-      <div
-        style={{
-          width: "400px",
-          boxShadow: "-5px 0 10px rgba(0,0,0,0.05)"
-        }}
-      >
-        <Details>{details}</Details>
-      </div>
+      {showDetails && (
+        <div
+          style={{
+            width: "300px",
+            boxShadow: "-5px 0 10px rgba(0,0,0,0.05)",
+            zIndex: 1
+          }}
+        >
+          <Details onClose={() => setShowDetails(false)}>{showDetails}</Details>
+        </div>
+      )}
     </div>
   );
 };
