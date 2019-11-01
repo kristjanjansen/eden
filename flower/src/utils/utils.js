@@ -9,3 +9,9 @@ export const random = (from, to) => {
 export const shuffle = arr => arr.sort(() => Math.random() - 0.5);
 
 export const any = arr => shuffle(arr)[0];
+
+export const snapToGrid = (value, gridsize) => {
+  return value % gridsize < gridsize / 2
+    ? value - (value % gridsize)
+    : value + gridsize - (value % gridsize);
+};

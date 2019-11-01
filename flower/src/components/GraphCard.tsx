@@ -22,14 +22,14 @@ const GraphCard: FC<{
     test: "Running tests"
   };
   const { module, service, state, status } = node;
-  const dark = true;
+  const dark = false;
   return (
     <div
       style={{
-        opacity: status == "pending" || status == "cancelled" ? 0.4 : 1,
+        opacity: status == "pending" || status == "cancelled" ? 0.3 : 1,
         background: dark ? colors.darkestGray : "white",
         borderRadius: "5px",
-        boxShadow: "0 0 2px 2px rgba(0,0,0,0.05)",
+        boxShadow: "0 0 2px 2px rgba(0,0,0,0.07)",
         height: "100%",
         color: colors.darkerGray,
         overflow: "hidden",
@@ -63,7 +63,7 @@ const GraphCard: FC<{
               color: dark ? colors.lightGray : colors.darkGray,
               // borderBottom: "1px solid",
               // borderBottomColor: colors.lighterGray,
-              padding: "7px 10px 14px 10px",
+              padding: "8px 10px 14px 10px",
               fontWeight: "bold"
             }}
           >
@@ -93,14 +93,13 @@ const GraphCard: FC<{
               ? colors.darkerGray
               : status == "error"
               ? colors.pink
-              : colors.lighterGray,
+              : colors.lightestGray,
             color: dark ? colors.lighterGray : colors.gray,
             // borderTop: "1px solid",
             //borderTopColor: colors.lighterGray,
             padding: "8px 10px",
             display: "flex",
             alignItems: "center",
-            boxShadow: "inset 0 -1px 5px 0px rgba(0,0,0,0.05)",
             fontFamily: "Inter, sans-serif"
           }}
         >

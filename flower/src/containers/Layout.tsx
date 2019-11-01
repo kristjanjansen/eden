@@ -18,15 +18,22 @@ const Layout: FC<{
   showDetails = false,
   onClose = () => null
 }) => {
+  const dark = false;
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div
+      style={{
+        display: "flex",
+        height: "100vh",
+        background: dark ? colors.darkestGray : colors.lightestGray
+      }}
+    >
       <div style={{ width: "200px", boxShadow: "5px 0 10px rgba(0,0,0,0.05)" }}>
         <Menu />
       </div>
       <div
         style={{
           flex: 1,
-          background: colors.lighterGray,
+          background: dark ? colors.darkerestGray : colors.lighterGray,
           padding: padded ? "20px" : "",
           position: "relative",
           overflow: "auto"

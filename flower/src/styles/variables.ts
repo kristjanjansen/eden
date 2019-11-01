@@ -46,6 +46,7 @@ export const gardenColors = {
 };
 
 export const colors = {
+  darkerestGray: "hsl(208,20%,10%)",
   darkestGray: "hsl(208,20%,18%)",
   darkerGray: "hsl(208,20%,28%)",
   darkGray: "hsl(208,20%,43%)",

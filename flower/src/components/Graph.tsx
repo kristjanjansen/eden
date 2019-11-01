@@ -34,7 +34,7 @@ const GraphHtml = ({ layout, zoom = 1, onSelect }: any) => {
                 <path
                   key={j}
                   d={sectionLine(s) || ""}
-                  opacity="0.2"
+                  opacity="0.1"
                   strokeWidth="3"
                   stroke="black"
                   fill="none"
