@@ -48,3 +48,34 @@ export const gardenColors = {
   taskReady: "#66ffcc",
   taskError: "red"
 };
+
+export const colors = {
+  darkestGray: "hsl(208,20%,18%)",
+  darkerGray: "hsl(208,20%,28%)",
+  darkGray: "hsl(208,20%,43%)",
+  gray: "hsl(208,20%,58%)",
+  lightGray: "hsl(208,20%,76%)",
+  lighterGray: "hsl(208,20%,88%)",
+  lightestGray: "hsl(208,20%,95%)"
+};
+
+// https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+
+export const ansiColors = {
+  black: "rgb(0,0,0)",
+  red: "rgb(194,54,33)",
+  green: "rgb(37,188,36)",
+  yellow: "rgb(173,173,39)",
+  blue: "rgb(73,46,225)",
+  magenta: "rgb(211,56,211)",
+  cyan: "rgb(51,187,200)",
+  brightwhite: "203,204,205",
+  brightblack: "rgb(0,0,0)",
+  brightRed: "rgb(255,85,85)",
+  brightGreen: "rgb(85,255,85)",
+  brightYellow: "rgb(255,255,85)",
+  brightBlue: "rgb(85,85,255)",
+  brightMagenta: "rgb(255,85,255)",
+  brightCyan: "rgb(85,255,255)",
+  brightWhite: "rgb(255,255,255)"
+};

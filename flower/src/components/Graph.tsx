@@ -43,21 +43,18 @@ const GraphHtml = ({ layout, zoom = 1, onSelect }: any) => {
         </svg>
       )}
       {children &&
-        children.map(({ x, y, width, height }: any, i: number) => (
+        children.map((node: any, i: number) => (
           <div
             key={i}
             style={{
               position: "absolute",
-              top: `${y}px`,
-              left: `${x}px`,
-              width: `${width}px`,
-              height: `${height}px`
+              top: `${node.y}px`,
+              left: `${node.x}px`,
+              width: `${node.width}px`,
+              height: `${node.height}px`
             }}
           >
-            <GraphCard onClick={() => onSelect(i)}>
-              {" "}
-              This is a {i + 1}th HTML box and it is fine
-            </GraphCard>
+            <GraphCard node={node} onClick={() => onSelect(i)}></GraphCard>
           </div>
         ))}
     </div>

@@ -1,4 +1,4 @@
 export default {
   typescript: true,
-  title: "Title"
+  title: "Trellis"
 };
