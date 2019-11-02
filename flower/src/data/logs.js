@@ -25,36 +25,37 @@ const hashes = [
   "-v-f18954441e-685759b6f8-nkwxt"
 ];
 
-export const logs = flatten(
-  Array.from({ length: 100 })
-    .map((_, i) => {
-      return {
-        service: any(services),
-        message: any(messages),
-        timestamp: `2019-10-31T15:46:42.${String(i).padStart(3, "0")}Z`,
-        delay: random(0, 1),
-        color: any([
-          ansiColors.green,
-          ansiColors.cyan,
-          ansiColors.magenta,
-          "white",
-          "white",
-          "white",
-          "white",
-          "white",
-          "white",
-          "white",
-          "white",
-          "white",
-          "white"
-        ])
-      };
-    })
-    .map(l => {
-      l.hash = `${l.service}${any(hashes)}`;
-      return l;
-    })
-);
+export const logs = (maxDelay = 0) =>
+  flatten(
+    Array.from({ length: 100 })
+      .map((_, i) => {
+        return {
+          service: any(services),
+          message: any(messages),
+          timestamp: `2019-10-31T15:46:42.${String(i).padStart(3, "0")}Z`,
+          delay: random(0, maxDelay),
+          color: any([
+            ansiColors.green,
+            ansiColors.cyan,
+            ansiColors.magenta,
+            "white",
+            "white",
+            "white",
+            "white",
+            "white",
+            "white",
+            "white",
+            "white",
+            "white",
+            "white"
+          ])
+        };
+      })
+      .map(l => {
+        l.hash = `${l.service}${any(hashes)}`;
+        return l;
+      })
+  );
 
 /*
 

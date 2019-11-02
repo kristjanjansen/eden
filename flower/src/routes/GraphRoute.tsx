@@ -59,6 +59,7 @@ const GraphRoute: FC = () => {
         }}
       >
         <Slider
+          title="Zoom"
           value={zoom}
           min={0.3}
           max={1}

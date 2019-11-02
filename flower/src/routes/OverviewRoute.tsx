@@ -70,17 +70,8 @@ const OveviewRoute: FC = () => {
           width: "200px"
         }}
       >
-        <div
-          style={{
-            marginBottom: "10px",
-            fontSize: "12px",
-            opacity: 0.3,
-            fontFamily: "Inter, sans-serif"
-          }}
-        >
-          Cols: {cols}
-        </div>
         <Slider
+          title="Columns"
           value={cols}
           min={1}
           max={10}
@@ -95,17 +86,8 @@ const OveviewRoute: FC = () => {
           width: "200px"
         }}
       >
-        <div
-          style={{
-            marginBottom: "10px",
-            fontSize: "12px",
-            opacity: 0.3,
-            fontFamily: "Inter, sans-serif"
-          }}
-        >
-          Rows: {rows}
-        </div>
         <Slider
+          title="Rows"
           value={rows}
           min={1}
           max={10}
