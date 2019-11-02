@@ -7,12 +7,13 @@ import Log from "../components/Log";
 
 import { logs } from "../data/logs";
 
-let pq = new PromiseQueue({ concurrency: 1 });
+const pq = new PromiseQueue({ concurrency: 1 });
+const maxDelay = 200;
 
 const LogsRoute: FC = () => {
   const [log, addLog] = useState([]);
   useEffect(() => {
-    logs.forEach((line: any) =>
+    logs(maxDelay).forEach((line: any) =>
       pq.add(
         () =>
           new Promise(resolve => {

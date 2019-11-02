@@ -2,29 +2,26 @@ import React, { FC, useState } from "react";
 
 import Menu from "../components/Menu";
 import Details from "../components/Details";
+import DarkControls from "../components/DarkControls";
 
 import { colors } from "../styles/variables";
+import { useUiContext } from "../contexts/ui";
 
 const Layout: FC<{
   children?: any;
   details?: any;
   padded?: boolean;
-  showDetails?: boolean;
   onClose?: Function;
-}> = ({
-  children,
-  padded = false,
-  details = null,
-  showDetails = false,
-  onClose = () => null
-}) => {
-  const dark = false;
+}> = ({ children, padded = false, details = null, onClose = () => null }) => {
+  const [{ darkLayout: dark }] = useUiContext();
+
   return (
     <div
       style={{
         display: "flex",
         height: "100vh",
-        background: dark ? colors.darkestGray : colors.lightestGray
+        background: dark ? colors.darkestGray : "white",
+        position: "relative"
       }}
     >
       <div style={{ width: "200px", boxShadow: "5px 0 10px rgba(0,0,0,0.05)" }}>
@@ -41,16 +38,17 @@ const Layout: FC<{
       >
         {children}
       </div>
-      {showDetails && (
+      {details && (
         <div
           style={{
-            width: "500px",
+            width: "25vw",
             boxShadow: "-5px 0 10px rgba(0,0,0,0.1)"
           }}
         >
-          <Details onClose={() => onClose()}>{details}</Details>
+          <Details>{details}</Details>
         </div>
       )}
+      <DarkControls />
     </div>
   );
 };

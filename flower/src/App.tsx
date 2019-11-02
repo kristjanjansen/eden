@@ -7,21 +7,25 @@ import LogsRoute from "./routes/LogsRoute";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import { UiProvider, uiInitialState, uiReducer } from "./contexts/ui";
+
 const App: FC = () => {
   return (
-    <Router>
-      <Switch>
-        <Route path="/graph">
-          <GraphRoute />
-        </Route>
-        <Route path="/logs">
-          <LogsRoute />
-        </Route>
-        <Route path="/">
-          <OverviewRoute />
-        </Route>
-      </Switch>
-    </Router>
+    <UiProvider initialState={uiInitialState} reducer={uiReducer}>
+      <Router>
+        <Switch>
+          <Route path="/graph">
+            <GraphRoute />
+          </Route>
+          <Route path="/logs">
+            <LogsRoute />
+          </Route>
+          <Route path="/">
+            <OverviewRoute />
+          </Route>
+        </Switch>
+      </Router>
+    </UiProvider>
   );
 };
 

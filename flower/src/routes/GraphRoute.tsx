@@ -2,9 +2,15 @@ import React, { FC, useState, useEffect } from "react";
 import ELK from "elkjs/lib/elk.bundled.js";
 
 import Layout from "../containers/Layout";
-import Graph from "../components/Graph";
+import GraphLayoutHtml from "../components/GraphLayoutHtml";
+import GraphLayoutSvg from "../components/GraphLayoutSvg";
+import Slider from "../components/Slider";
 
 import { randomNodes, randomEdges } from "../data/graph";
+
+import { useUiContext } from "../contexts/ui";
+
+// https://github.com/OpenKieler/elkjs
 
 const elk = new ELK();
 
@@ -19,7 +25,7 @@ const graph = {
 
 const GraphRoute: FC = () => {
   const [layout, setLayout] = useState({ children: [] });
-  const [activeNodeIndex, setActiveNodeIndex] = useState(-1);
+  const [{ activeNodeIndex }, dispatch] = useUiContext();
 
   useEffect(() => {
     const generateGraph = async () => {
@@ -29,23 +35,38 @@ const GraphRoute: FC = () => {
     generateGraph();
   }, []);
 
+  const [zoom, setZoom] = useState(1);
+
   return (
     <Layout
       details={
+        activeNodeIndex !== -1 &&
         layout &&
         layout.children && (
           <pre>{JSON.stringify(layout.children[activeNodeIndex], null, 2)}</pre>
         )
       }
-      showDetails={activeNodeIndex > -1}
-      onClose={() => setActiveNodeIndex(-1)}
     >
-      {
-        <Graph
-          layout={layout}
-          setNode={(index: any) => setActiveNodeIndex(index)}
+      <GraphLayoutHtml layout={layout} zoom={zoom} />
+      {/* <GraphLayoutSvg layout={layout} /> */}
+      {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}
+      <div
+        style={{
+          position: "fixed",
+          left: "220px",
+          bottom: "20px",
+          width: "200px"
+        }}
+      >
+        <Slider
+          title="Zoom"
+          value={zoom}
+          min={0.3}
+          max={1}
+          step={0.01}
+          onChange={(zoom: number) => setZoom(zoom)}
         />
-      }
+      </div>
     </Layout>
   );
 };

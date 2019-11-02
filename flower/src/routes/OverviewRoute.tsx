@@ -1,32 +1,67 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { FC, useState } from "react";
 
 import Layout from "../containers/Layout";
-import SimpleCard from "../components/SimpleCard";
+import Card from "../components/Card";
 import Slider from "../components/Slider";
-import { any } from "../utils/utils";
 
-const Oveview: FC = () => {
+import { cards } from "../data/overview";
+
+const OveviewRoute: FC = () => {
+  // Current number of columns and rows
+  // By default use 6 × 6 grid layout
+
   const [cols, setCols] = useState(6);
   const [rows, setRows] = useState(6);
+
+  //
+
+  const [activeCardIndex, setActiveCardIndex] = useState(-1);
+
   return (
     <Layout padded>
       <div
         style={{
           height: "100%",
           display: "grid",
+
+          // "cols" value is passed to CSS grid repeat() function
+          // With cols = 3, the result will be the following:
+          // "1fr 1fr 1fr"
+
           gridTemplateColumns: `repeat(${cols},1fr)`,
           gridTemplateRows: `repeat(${rows},1fr)`,
-          gridGap: "20px",
+
+          // Make the grid to use dense layout
+          // packing algorithm
+
           gridAutoFlow: "row dense",
+
+          // A grid gap
+
+          gridGap: "20px",
+
+          // Required for placing the
+          // absolutely posioned sliders
+          // @TODO Put the slides to a dedicated
+          // Layout regiion
+
           position: "relative"
         }}
       >
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div style={{ gridRowEnd: `span ${any([1, 1, 2])}` }}>
-            <SimpleCard>Card #{i} with some output here</SimpleCard>
+        {/* Map generated card data to card components */}
+
+        {cards.map(({ title, height }, i) => (
+          <div key={i} style={{ gridRowEnd: `span ${height}` }}>
+            <Card
+              active={activeCardIndex == i}
+              onClick={() => setActiveCardIndex(activeCardIndex == i ? -1 : i)}
+            >
+              {title}
+            </Card>
           </div>
         ))}
       </div>
+
       <div
         style={{
           position: "fixed",
@@ -35,17 +70,8 @@ const Oveview: FC = () => {
           width: "200px"
         }}
       >
-        <div
-          style={{
-            marginBottom: "10px",
-            fontSize: "12px",
-            opacity: 0.3,
-            fontFamily: "Inter, sans-serif"
-          }}
-        >
-          Cols: {cols}
-        </div>
         <Slider
+          title="Columns"
           value={cols}
           min={1}
           max={10}
@@ -60,17 +86,8 @@ const Oveview: FC = () => {
           width: "200px"
         }}
       >
-        <div
-          style={{
-            marginBottom: "10px",
-            fontSize: "12px",
-            opacity: 0.3,
-            fontFamily: "Inter, sans-serif"
-          }}
-        >
-          Rows: {rows}
-        </div>
         <Slider
+          title="Rows"
           value={rows}
           min={1}
           max={10}
@@ -81,4 +98,4 @@ const Oveview: FC = () => {
   );
 };
 
-export default Oveview;
+export default OveviewRoute;
