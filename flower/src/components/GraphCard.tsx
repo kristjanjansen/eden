@@ -6,10 +6,11 @@ import Status from "./Status";
 
 const GraphCard: FC<{
   active?: boolean;
+  dark?: false;
   node?: any;
   children?: any;
   onClick?: Function;
-}> = ({ active = false, node = {}, onClick = () => null }) => {
+}> = ({ active = false, dark = false, node = {}, onClick = () => null }) => {
   const [currentlyActive, setCurrentlyActive] = useState(false);
 
   useEffect(() => setCurrentlyActive(active), [active]);
@@ -22,7 +23,6 @@ const GraphCard: FC<{
     test: "Running tests"
   };
   const { module, service, state, status } = node;
-  const dark = false;
   return (
     <div
       style={{

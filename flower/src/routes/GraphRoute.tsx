@@ -50,6 +50,7 @@ const GraphRoute: FC = () => {
       onClose={() => setActiveNodeIndex(-1)}
     >
       <Graph
+        dark={darkCards}
         layout={layout}
         setNode={(index: any) => setActiveNodeIndex(index)}
       />
