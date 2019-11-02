@@ -1,6 +1,8 @@
-# The Eden projects
+## The Eden project
 
-## 1. Flower [/flower](/flower)
+### 1. Flower
+
+💻 Source: [/flower](/flower)
 
 🚀 Demo: https://flower.kristjanjansen.now.sh
 
@@ -8,13 +10,17 @@ A dashbord prototype, implemented in `create-react-app --typescript`.
 
 Here is a quick code walkthrough:
 
-### [/flower/src/App.tsx](/flower/src/App.tsx)
+#### App.tsx
+
+**[/flower/src/App.tsx]](/flower/src/App.tsx)**
 
 Project main entrypoint, uses `react-router` to set up three main routes.
 
 The router is wrapped into custom `UIProvider` (located in `./contexts/ui.js`) to provide a global state handling.
 
-### [/flower/src/routes/OverviewRoute.tsx](/flower/src/routes/OverviewRoute.tsx) &nbsp;<mark>&nbsp;WIP&nbsp;</mark>
+### OverviewRoute.tsx (WIP)
+
+[/flower/src/routes/OverviewRoute.tsx](/flower/src/routes/OverviewRoute.tsx)
 
 An project overview route.
 
@@ -24,7 +30,9 @@ The cards on the page are randomy generated placeholders, generated in `./src/da
 
 The slider controls on a page allow to change number and columns. The feature is implemented with a `<Slider>` component and `useState` hooks that pass the current `cols` and `rows` values to CSS grid parameters.
 
-### [/flower/src/routes/GraphRoute.tsx](/flower/src/routes/GraphRoute.tsx)
+### GraphRoute.tsx
+
+[/flower/src/routes/GraphRoute.tsx](/flower/src/routes/GraphRoute.tsx)
 
 _The_ view of the project. There is a lot of happening here:
 
@@ -48,9 +56,11 @@ _The_ view of the project. There is a lot of happening here:
 
 7.  `<StatusIcon />` has different presets for status display. By default statuses are displayed as UTF8 circles, except `status = 'processing` that is rendered by `<StatusSpinner>` component.
 
-8.  `<StatusSpinner>` is using `cli-spinners` library and animates the CLI text-based spinners in HTML. It uses the CLI spinner source files to get the animation frames (UTF8 characters / emojis) and the delay between the frames. For animation, `useInterval` hook is used (based on Dan Abramov article) that cycles thought the animation frames and displays the text-based spinner.
+8.  `<StatusSpinner>` is using `cli-spinners` library and animates the CLI text-based spinners in HTML. It uses the CLI spinner source files to get the animation frames (UTF8 characters / emojis) and the delay between the frames. For animation, `useInterval` hook is used (based on [Dan Abramov article](https://overreacted.io/making-setinterval-declarative-with-react-hooks/)) that cycles thought the animation frames and displays the text-based spinner.
 
-### [/flower/src/routes/LogRoute.tsx](/flower/src/routes/LogRoute.tsx)
+### LogRoute.tsx
+
+[/flower/src/routes/LogRoute.tsx](/flower/src/routes/LogRoute.tsx)
 
 Realtime log output simulation view.
 
@@ -62,7 +72,9 @@ Realtime log output simulation view.
 
 4. `<LogLine>` is displaying a log item, splitting it into columns, applying different visual importance for each column.
 
-## 2. Soil [/sol](/soil)
+## 2. Soil
+
+💻 Source: [/sol](/soil)
 
 A CLI application prototype, implemented in Typescript and https://github.com/vadimdemedes/ink library.
 
@@ -72,17 +84,19 @@ It includes Hello World command made with React components and also a set of Moc
 
 🚀 Demo: https://trellis.kristjanjansen.now.sh/
 
+💻 Source: [/trellis](/trellis)
+
 A documentation site prototype, implemented in Docz https://github.com/doczjs/docz.
 
 Docz is a documentation generation toolkit, based on Gatsby, Gatsby themes and MDX (Markdown combined with React application).
 
 The prototype includes three colors-related components (Garden colors, Flower prototype colors and ANSI terminal colors), showing off how components can enrich the documentation exprience, link together different UI touchpoint codebases and codify design decisions and artifacts.
 
-# Related projects
+## Related projects
 
 Some projects mentioned in the demo meeting:
 
-## Prima CLI specs
+### Prima CLI specs
 
 🚀 Demo https://prisma-specs.netlify.com/cli/init/starter-kit/
 
@@ -97,14 +111,14 @@ https://raw.githubusercontent.com/prisma/specs/master/cli/src/pages/init/starter
 
 https://github.com/prisma/specs/tree/master/cli/src/components/Terminal
 
-## Typeit
+### Typeit
 
 https://typeitjs.com/
 
-## Kubernetes interactive tutorials
+### Kubernetes interactive tutorials
 
 https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/
 
-## Comparision of NodeJS argument parsers
+### Comparision of NodeJS argument parsers
 
 https://pantas.net/node_argument_parsers/
