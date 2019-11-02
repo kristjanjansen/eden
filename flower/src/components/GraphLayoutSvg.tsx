@@ -1,7 +1,7 @@
 import React from "react";
 import { sectionLine } from "../utils/utils";
 
-const GraphSvg = ({ layout }: any) => {
+const GraphLayoutSvg = ({ layout }: any) => {
   const { width, height, children, edges } = layout;
   if (children)
     return (
@@ -77,4 +77,4 @@ const GraphSvg = ({ layout }: any) => {
   return <div></div>;
 };
 
-export default GraphSvg;
+export default GraphLayoutSvg;

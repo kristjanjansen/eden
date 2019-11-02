@@ -4,7 +4,7 @@ import GraphCard from "./GraphCard";
 import { useUiContext } from "../contexts/ui";
 import { sectionLine } from "../utils/utils";
 
-const GraphHtml = ({ layout, zoom = 1 }: any) => {
+const GraphLayoutHtml = ({ layout, zoom = 1 }: any) => {
   const { width, height, children, edges } = layout;
   const [{ activeNodeIndex }, dispatch] = useUiContext();
 
@@ -59,4 +59,4 @@ const GraphHtml = ({ layout, zoom = 1 }: any) => {
   );
 };
 
-export default GraphHtml;
+export default GraphLayoutHtml;

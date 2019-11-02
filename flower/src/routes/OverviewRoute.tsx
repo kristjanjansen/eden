@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 
 import Layout from "../containers/Layout";
-import SimpleCard from "../components/SimpleCard";
+import Card from "../components/Card";
 import Slider from "../components/Slider";
 
 import { cards } from "../data/overview";
@@ -52,12 +52,12 @@ const OveviewRoute: FC = () => {
 
         {cards.map(({ title, height }, i) => (
           <div key={i} style={{ gridRowEnd: `span ${height}` }}>
-            <SimpleCard
+            <Card
               active={activeCardIndex == i}
               onClick={() => setActiveCardIndex(activeCardIndex == i ? -1 : i)}
             >
               {title}
-            </SimpleCard>
+            </Card>
           </div>
         ))}
       </div>

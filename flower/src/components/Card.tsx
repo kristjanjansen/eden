@@ -3,7 +3,7 @@ import React, { FC, useState, useEffect } from "react";
 import { gardenColors, colors } from "../styles/variables";
 import { useUiContext } from "../contexts/ui";
 
-const SimpleCard: FC<{
+const Card: FC<{
   active?: boolean;
   children?: any;
   onClick?: Function;
@@ -35,4 +35,4 @@ const SimpleCard: FC<{
   );
 };
 
-export default SimpleCard;
+export default Card;
