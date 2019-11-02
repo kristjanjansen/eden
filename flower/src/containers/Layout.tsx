@@ -11,16 +11,9 @@ const Layout: FC<{
   children?: any;
   details?: any;
   padded?: boolean;
-  showDetails?: boolean;
   onClose?: Function;
-}> = ({
-  children,
-  padded = false,
-  details = null,
-  showDetails = false,
-  onClose = () => null
-}) => {
-  const [{ darkLayout: dark }] = useUiContext();
+}> = ({ children, padded = false, details = null, onClose = () => null }) => {
+  const [{ darkLayout: dark, showDetails }] = useUiContext();
 
   return (
     <div
@@ -52,7 +45,7 @@ const Layout: FC<{
             boxShadow: "-5px 0 10px rgba(0,0,0,0.1)"
           }}
         >
-          <Details onClose={() => onClose()}>{details}</Details>
+          <Details>{details}</Details>
         </div>
       )}
       <DarkControls />

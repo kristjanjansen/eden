@@ -3,14 +3,16 @@ import React, { FC, useState, useEffect } from "react";
 import Status from "./Status";
 
 import { gardenColors, colors, ansiColors } from "../styles/variables";
+import { useUiContext } from "../contexts/ui";
 
 const GraphCard: FC<{
   active?: boolean;
-  dark?: false;
   node?: any;
   children?: any;
   onClick?: Function;
-}> = ({ active = false, dark = false, node = {}, onClick = () => null }) => {
+}> = ({ active = false, node = {}, onClick = () => null }) => {
+  const [{ darkCards: dark }] = useUiContext();
+
   const [currentlyActive, setCurrentlyActive] = useState(false);
 
   useEffect(() => setCurrentlyActive(active), [active]);

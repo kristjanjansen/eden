@@ -1,11 +1,15 @@
 import React, { FC } from "react";
+import { useUiContext } from "../contexts/ui";
 
 const Details: FC<{ children?: any; onClose?: Function }> = ({
   children = null,
   onClose = () => null
 }) => {
+  const [{ showDetails }, dispatch] = useUiContext();
+
   return (
     <div style={{ position: "relative" }}>
+      {JSON.stringify(showDetails)}
       <div
         style={{
           position: "absolute",
@@ -16,7 +20,7 @@ const Details: FC<{ children?: any; onClose?: Function }> = ({
           color: "gray",
           padding: "20px"
         }}
-        onClick={() => onClose()}
+        onClick={() => dispatch({ type: "showDetails", showDetails: false })}
       >
         ×
       </div>

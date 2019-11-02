@@ -35,13 +35,12 @@ const GraphRoute: FC = () => {
   return (
     <Layout
       details={
+        activeNodeIndex > -1 &&
         layout &&
         layout.children && (
           <pre>{JSON.stringify(layout.children[activeNodeIndex], null, 2)}</pre>
         )
       }
-      showDetails={activeNodeIndex > -1}
-      onClose={() => setActiveNodeIndex(-1)}
     >
       <Graph
         layout={layout}
