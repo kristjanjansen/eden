@@ -2,10 +2,12 @@ import React, { FC, useState, useEffect } from "react";
 import ELK from "elkjs/lib/elk.bundled.js";
 
 import Layout from "../containers/Layout";
-import Graph from "../components/Graph";
+import GraphLayoutHtml from "../components/GraphLayoutHtml";
+import GraphLayoutSvg from "../components/GraphLayoutSvg";
+import Slider from "../components/Slider";
 
 import { randomNodes, randomEdges } from "../data/graph";
-import Slider from "../components/Slider";
+
 import { useUiContext } from "../contexts/ui";
 
 // https://github.com/OpenKieler/elkjs
@@ -33,6 +35,8 @@ const GraphRoute: FC = () => {
     generateGraph();
   }, []);
 
+  const [zoom, setZoom] = useState(1);
+
   return (
     <Layout
       details={
@@ -43,7 +47,25 @@ const GraphRoute: FC = () => {
         )
       }
     >
-      <Graph layout={layout} />
+      <GraphLayoutHtml layout={layout} zoom={zoom} />
+      {/* <GraphLayoutSvg layout={layout} /> */}
+      {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}
+      <div
+        style={{
+          position: "fixed",
+          left: "220px",
+          bottom: "20px",
+          width: "200px"
+        }}
+      >
+        <Slider
+          value={zoom}
+          min={0.3}
+          max={1}
+          step={0.01}
+          onChange={(zoom: number) => setZoom(zoom)}
+        />
+      </div>
     </Layout>
   );
 };
