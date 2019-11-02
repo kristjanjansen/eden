@@ -8,7 +8,7 @@ const SimpleCard: FC<{
   children?: any;
   onClick?: Function;
 }> = ({ active = false, children = null, onClick = () => null }) => {
-  const [{ darkLayout: dark }] = useUiContext();
+  const [{ darkCards: dark }] = useUiContext();
 
   const [currentlyActive, setCurrentlyActive] = useState(false);
 

@@ -18,7 +18,7 @@ const OveviewRoute: FC = () => {
   const [darkCards, setDarkCards] = useState(false);
 
   return (
-    <Layout padded dark={darkLayout}>
+    <Layout padded>
       <div
         style={{
           height: "100%",

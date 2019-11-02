@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useReducer } from "react";
 
 export const uiInitialState = {
-  darkLayout: false
+  darkLayout: false,
+  darkCards: false
 };
 
 export const UiContext = createContext();
@@ -18,6 +19,11 @@ export const uiReducer = (state, action) => {
       return {
         ...state,
         darkLayout: action.darkLayout
+      };
+    case "darkCards":
+      return {
+        ...state,
+        darkCards: action.darkCards
       };
 
     default:

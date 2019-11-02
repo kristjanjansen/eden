@@ -2,7 +2,6 @@ import React, { FC, useEffect, useState } from "react";
 import { line, curveCardinal } from "d3-shape";
 
 import GraphCard from "./GraphCard";
-import { colors } from "../styles/variables";
 
 // https://github.com/d3/d3-shape#lines
 
@@ -18,7 +17,7 @@ const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
   return makeLine([start, end]);
 };
 
-const GraphHtml = ({ dark = false, layout, zoom = 1, onSelect }: any) => {
+const GraphHtml = ({ layout, zoom = 1, onSelect }: any) => {
   const { width, height, children, edges } = layout;
   return (
     <div
@@ -58,11 +57,7 @@ const GraphHtml = ({ dark = false, layout, zoom = 1, onSelect }: any) => {
               height: `${node.height}px`
             }}
           >
-            <GraphCard
-              dark={dark}
-              node={node}
-              onClick={() => onSelect(i)}
-            ></GraphCard>
+            <GraphCard node={node} onClick={() => onSelect(i)}></GraphCard>
           </div>
         ))}
     </div>
@@ -159,8 +154,7 @@ const Slider: FC<{
   />
 );
 
-const Graph: FC<{ dark?: boolean; layout: any; setNode?: Function }> = ({
-  dark = false,
+const Graph: FC<{ layout: any; setNode?: Function }> = ({
   layout,
   setNode = () => null
 }) => {
@@ -168,7 +162,6 @@ const Graph: FC<{ dark?: boolean; layout: any; setNode?: Function }> = ({
   return (
     <div>
       <GraphHtml
-        dark={dark}
         layout={layout}
         zoom={zoom}
         onSelect={(index: any) => setNode(index)}

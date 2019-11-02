@@ -3,7 +3,7 @@ import { useUiContext } from "../contexts/ui";
 import Slider from "./Slider";
 
 const Details: FC = () => {
-  const [{ darkLayout }, dispatch] = useUiContext();
+  const [{ darkLayout, darkCards }, dispatch] = useUiContext();
 
   return (
     <div
@@ -11,10 +11,10 @@ const Details: FC = () => {
         position: "fixed",
         left: "20px",
         bottom: "20px",
-        width: "40px"
+        width: "100px",
+        display: "flex"
       }}
     >
-      {darkLayout}
       <Slider
         value={darkLayout ? 1 : 0}
         min={0}
@@ -26,6 +26,18 @@ const Details: FC = () => {
           })
         }
       />
+      <Slider
+        value={darkCards ? 1 : 0}
+        min={0}
+        max={1}
+        onChange={(value: number) =>
+          dispatch({
+            type: "darkCards",
+            darkCards: !!value
+          })
+        }
+      />
+      &nbsp;
     </div>
   );
 };

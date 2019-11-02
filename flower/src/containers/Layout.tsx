@@ -5,22 +5,23 @@ import Details from "../components/Details";
 import DarkControls from "../components/DarkControls";
 
 import { colors } from "../styles/variables";
+import { useUiContext } from "../contexts/ui";
 
 const Layout: FC<{
   children?: any;
   details?: any;
   padded?: boolean;
   showDetails?: boolean;
-  dark?: boolean;
   onClose?: Function;
 }> = ({
   children,
   padded = false,
   details = null,
   showDetails = false,
-  dark = false,
   onClose = () => null
 }) => {
+  const [{ darkLayout: dark }] = useUiContext();
+
   return (
     <div
       style={{

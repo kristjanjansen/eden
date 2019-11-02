@@ -1,8 +1,8 @@
 import React, { FC, useState, useEffect } from "react";
-import { useInterval } from "react-use";
+
+import Status from "./Status";
 
 import { gardenColors, colors, ansiColors } from "../styles/variables";
-import Status from "./Status";
 
 const GraphCard: FC<{
   active?: boolean;
@@ -15,7 +15,6 @@ const GraphCard: FC<{
 
   useEffect(() => setCurrentlyActive(active), [active]);
 
-  const [opacity, setOpacity] = useState(1);
   const stateTitles = {
     build: "Building",
     deploy: "Deploying",
@@ -61,8 +60,6 @@ const GraphCard: FC<{
           <div
             style={{
               color: dark ? ansiColors.cyan : colors.darkGray,
-              // borderBottom: "1px solid",
-              // borderBottomColor: colors.lighterGray,
               padding: "8px 10px 14px 10px",
               fontWeight: "bold"
             }}
