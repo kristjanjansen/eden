@@ -2,11 +2,12 @@ import React, { FC, useEffect, useState } from "react";
 import { line, curveCardinal } from "d3-shape";
 
 import GraphCard from "./GraphCard";
+import { useUiContext } from "../contexts/ui";
 
 // https://github.com/d3/d3-shape#lines
 
 const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
-  const makeLine = line().curve(curveCardinal.tension(0));
+  const makeLine = line().curve(curveCardinal.tension(0.92));
   const start: [number, number] = [startPoint.x, startPoint.y];
   const end: [number, number] = [endPoint.x, endPoint.y];
 
@@ -17,8 +18,10 @@ const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
   return makeLine([start, end]);
 };
 
-const GraphHtml = ({ layout, zoom = 1, onSelect }: any) => {
+const GraphHtml = ({ layout, zoom = 1 }: any) => {
   const { width, height, children, edges } = layout;
+  const [{ activeNodeIndex }, dispatch] = useUiContext();
+
   return (
     <div
       style={{
@@ -57,7 +60,13 @@ const GraphHtml = ({ layout, zoom = 1, onSelect }: any) => {
               height: `${node.height}px`
             }}
           >
-            <GraphCard node={node} onClick={() => onSelect(i)}></GraphCard>
+            <GraphCard
+              node={node}
+              active={activeNodeIndex == i}
+              onClick={() =>
+                dispatch({ type: "activeNodeIndex", activeNodeIndex: i })
+              }
+            />
           </div>
         ))}
     </div>
@@ -154,18 +163,11 @@ const Slider: FC<{
   />
 );
 
-const Graph: FC<{ layout: any; setNode?: Function }> = ({
-  layout,
-  setNode = () => null
-}) => {
+const Graph: FC<{ layout: any }> = ({ layout }) => {
   const [zoom, setZoom] = useState(1);
   return (
     <div>
-      <GraphHtml
-        layout={layout}
-        zoom={zoom}
-        onSelect={(index: any) => setNode(index)}
-      />
+      <GraphHtml layout={layout} zoom={zoom} />
       {/* <GraphSvg layout={layout} /> */}
       {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}
       <div

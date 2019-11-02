@@ -9,13 +9,13 @@ import { cards } from "../data/overview";
 const OveviewRoute: FC = () => {
   // Current number of columns and rows
   // By default use 6 × 6 grid layout
+
   const [cols, setCols] = useState(6);
   const [rows, setRows] = useState(6);
 
-  // Dark mode controls
-  // @TODO extract this to a global UI state context
-  const [darkLayout, setDarkLayout] = useState(false);
-  const [darkCards, setDarkCards] = useState(false);
+  //
+
+  const [activeCardIndex, setActiveCardIndex] = useState(-1);
 
   return (
     <Layout padded>
@@ -27,72 +27,40 @@ const OveviewRoute: FC = () => {
           // "cols" value is passed to CSS grid repeat() function
           // With cols = 3, the result will be the following:
           // "1fr 1fr 1fr"
+
           gridTemplateColumns: `repeat(${cols},1fr)`,
           gridTemplateRows: `repeat(${rows},1fr)`,
 
           // Make the grid to use dense layout
           // packing algorithm
+
           gridAutoFlow: "row dense",
 
           // A grid gap
+
           gridGap: "20px",
 
           // Required for placing the
           // absolutely posioned sliders
           // @TODO Put the slides to a dedicated
           // Layout regiion
+
           position: "relative"
         }}
       >
         {/* Map generated card data to card components */}
+
         {cards.map(({ title, height }, i) => (
           <div key={i} style={{ gridRowEnd: `span ${height}` }}>
-            <SimpleCard>{title}</SimpleCard>
+            <SimpleCard
+              active={activeCardIndex == i}
+              onClick={() => setActiveCardIndex(activeCardIndex == i ? -1 : i)}
+            >
+              {title}
+            </SimpleCard>
           </div>
         ))}
       </div>
-
-      {/*
-        Light / dark controls 
-        @TODO Extract this to layout component / global UI state
-      */}
-
-      {/* <div
-        style={{
-          position: "fixed",
-          left: "20px",
-          bottom: "20px",
-          width: "40px"
-        }}
-      >
-        <Slider
-          value={darkLayout ? 1 : 0}
-          min={0}
-          max={1}
-          onChange={(value: number) => setDarkLayout(!!value)}
-        />
-      </div> */}
-
-      {/* <div
-        style={{
-          position: "fixed",
-          left: "80px",
-          bottom: "20px",
-          width: "40px"
-        }}
-      >
-        <Slider
-          value={darkCards ? 1 : 0}
-          min={0}
-          max={1}
-          onChange={(value: number) => setDarkCards(!!value)}
-        />
-      </div> */}
-
-      {/*
-        Row / col slider controls 
-        @TODO Extract this to layout component / global UI state
-      */}
 
       <div
         style={{

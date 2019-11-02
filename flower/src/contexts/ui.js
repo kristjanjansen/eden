@@ -3,7 +3,7 @@ import React, { createContext, useContext, useReducer } from "react";
 export const uiInitialState = {
   darkLayout: false,
   darkCards: false,
-  showDetails: true
+  activeNodeIndex: -1
 };
 
 export const UiContext = createContext();
@@ -30,6 +30,11 @@ export const uiReducer = (state, action) => {
       return {
         ...state,
         showDetails: action.showDetails
+      };
+    case "activeNodeIndex":
+      return {
+        ...state,
+        activeNodeIndex: action.activeNodeIndex
       };
 
     default:

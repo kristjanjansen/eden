@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 import { useUiContext } from "../contexts/ui";
+import { colors } from "../styles/variables";
 
 const Details: FC<{ children?: any; onClose?: Function }> = ({
   children = null,
   onClose = () => null
 }) => {
-  const [{ showDetails }, dispatch] = useUiContext();
+  const [_, dispatch] = useUiContext();
 
   return (
     <div style={{ position: "relative" }}>
-      {JSON.stringify(showDetails)}
       <div
         style={{
           position: "absolute",
@@ -17,14 +17,21 @@ const Details: FC<{ children?: any; onClose?: Function }> = ({
           right: "0px",
           fontSize: "22px",
           cursor: "pointer",
-          color: "gray",
+          color: colors.gray,
           padding: "20px"
         }}
-        onClick={() => dispatch({ type: "showDetails", showDetails: false })}
+        onClick={() =>
+          dispatch({ type: "activeNodeIndex", activeNodeIndex: -1 })
+        }
       >
         ×
       </div>
-      <div style={{ padding: "20px" }}>{children}</div>
+      <div style={{ padding: "20px" }}>
+        <mark>WIP</mark>
+        <br />
+        <br />
+        {children}
+      </div>
     </div>
   );
 };

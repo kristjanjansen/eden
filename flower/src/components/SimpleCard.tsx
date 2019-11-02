@@ -10,9 +10,6 @@ const SimpleCard: FC<{
 }> = ({ active = false, children = null, onClick = () => null }) => {
   const [{ darkCards: dark }] = useUiContext();
 
-  const [currentlyActive, setCurrentlyActive] = useState(false);
-
-  useEffect(() => setCurrentlyActive(active), [active]);
   return (
     <div
       style={{
@@ -25,12 +22,11 @@ const SimpleCard: FC<{
         fontWeight: 600,
         fontSize: "14px",
         color: colors.lightGray,
-        border: currentlyActive
+        border: active
           ? `2px solid ${gardenColors.gardenBlue}`
           : "2px solid transparent"
       }}
       onClick={() => {
-        setCurrentlyActive(!currentlyActive);
         onClick();
       }}
     >

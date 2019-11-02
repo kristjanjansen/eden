@@ -6,6 +6,7 @@ import Graph from "../components/Graph";
 
 import { randomNodes, randomEdges } from "../data/graph";
 import Slider from "../components/Slider";
+import { useUiContext } from "../contexts/ui";
 
 // https://github.com/OpenKieler/elkjs
 
@@ -22,7 +23,7 @@ const graph = {
 
 const GraphRoute: FC = () => {
   const [layout, setLayout] = useState({ children: [] });
-  const [activeNodeIndex, setActiveNodeIndex] = useState(-1);
+  const [{ activeNodeIndex }, dispatch] = useUiContext();
 
   useEffect(() => {
     const generateGraph = async () => {
@@ -35,17 +36,14 @@ const GraphRoute: FC = () => {
   return (
     <Layout
       details={
-        activeNodeIndex > -1 &&
+        activeNodeIndex !== -1 &&
         layout &&
         layout.children && (
           <pre>{JSON.stringify(layout.children[activeNodeIndex], null, 2)}</pre>
         )
       }
     >
-      <Graph
-        layout={layout}
-        setNode={(index: any) => setActiveNodeIndex(index)}
-      />
+      <Graph layout={layout} />
     </Layout>
   );
 };

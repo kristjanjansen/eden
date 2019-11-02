@@ -13,10 +13,6 @@ const GraphCard: FC<{
 }> = ({ active = false, node = {}, onClick = () => null }) => {
   const [{ darkCards: dark }] = useUiContext();
 
-  const [currentlyActive, setCurrentlyActive] = useState(false);
-
-  useEffect(() => setCurrentlyActive(active), [active]);
-
   const stateTitles = {
     build: "Building",
     deploy: "Deploying",
@@ -34,11 +30,10 @@ const GraphCard: FC<{
         height: "100%",
         color: colors.darkerGray,
         overflow: "hidden",
-        border: currentlyActive ? `2px solid ${gardenColors.gardenBlue}` : "",
+        border: active ? `2px solid ${gardenColors.gardenBlue}` : "",
         position: "relative"
       }}
       onClick={() => {
-        setCurrentlyActive(!currentlyActive);
         onClick();
       }}
     >
@@ -94,8 +89,6 @@ const GraphCard: FC<{
               ? colors.pink
               : colors.lightestGray,
             color: dark ? colors.lighterGray : colors.gray,
-            // borderTop: "1px solid",
-            //borderTopColor: colors.lighterGray,
             padding: "8px 10px",
             display: "flex",
             alignItems: "center",

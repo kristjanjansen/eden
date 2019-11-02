@@ -13,7 +13,7 @@ const Layout: FC<{
   padded?: boolean;
   onClose?: Function;
 }> = ({ children, padded = false, details = null, onClose = () => null }) => {
-  const [{ darkLayout: dark, showDetails }] = useUiContext();
+  const [{ darkLayout: dark }] = useUiContext();
 
   return (
     <div
@@ -38,7 +38,7 @@ const Layout: FC<{
       >
         {children}
       </div>
-      {showDetails && (
+      {details && (
         <div
           style={{
             width: "25vw",

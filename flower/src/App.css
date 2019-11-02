@@ -14,6 +14,7 @@ body {
 
 pre {
   margin: 0;
+  color: hsl(208, 20%, 43%);
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -50,4 +51,6 @@ mark {
   color: white;
   border-radius: 2px;
   font-size: 11px;
+  font-family: Inter, sans-serif;
+  font-weight: normal;
 }
