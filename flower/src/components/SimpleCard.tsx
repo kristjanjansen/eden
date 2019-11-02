@@ -4,15 +4,21 @@ import { gardenColors, colors } from "../styles/variables";
 
 const SimpleCard: FC<{
   active?: boolean;
+  dark?: boolean;
   children?: any;
   onClick?: Function;
-}> = ({ active = false, children = null, onClick = () => null }) => {
+}> = ({
+  active = false,
+  dark = false,
+  children = null,
+  onClick = () => null
+}) => {
   const [currentlyActive, setCurrentlyActive] = useState(false);
   useEffect(() => setCurrentlyActive(active), [active]);
   return (
     <div
       style={{
-        background: "white",
+        background: dark ? colors.darkestGray : "white",
         borderRadius: "5px",
         boxShadow: "0 0 2px 2px rgba(0,0,0,0.05)",
         height: "100%",

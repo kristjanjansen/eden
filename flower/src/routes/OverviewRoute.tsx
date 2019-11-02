@@ -14,14 +14,15 @@ const cards = Array.from({ length: 20 }).map((_, i) => {
 });
 
 const OveviewRoute: FC = () => {
-  const [dark, setDark] = useState(false);
+  const [darkLayout, setDarkLayout] = useState(false);
+  const [darkCards, setDarkCards] = useState(false);
 
   // By default use 6 × 6 grid layout
   const [cols, setCols] = useState(6);
   const [rows, setRows] = useState(6);
 
   return (
-    <Layout padded dark={dark}>
+    <Layout padded dark={darkLayout}>
       <div
         style={{
           height: "100%",
@@ -50,10 +51,15 @@ const OveviewRoute: FC = () => {
         {/* Generate 20 cards with with the heights of either 1 or 2 rows */}
         {cards.map(({ title, height }, i) => (
           <div key={i} style={{ gridRowEnd: `span ${height}` }}>
-            <SimpleCard>{title}</SimpleCard>
+            <SimpleCard dark={darkCards}>{title}</SimpleCard>
           </div>
         ))}
       </div>
+
+      {/*
+        Light / dark controls 
+        @TODO Extract this to layout component / global UI state
+      */}
 
       <div
         style={{
@@ -64,10 +70,26 @@ const OveviewRoute: FC = () => {
         }}
       >
         <Slider
-          value={dark ? 1 : 0}
+          value={darkLayout ? 1 : 0}
           min={0}
           max={1}
-          onChange={(value: number) => setDark(!!value)}
+          onChange={(value: number) => setDarkLayout(!!value)}
+        />
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          left: "80px",
+          bottom: "20px",
+          width: "40px"
+        }}
+      >
+        <Slider
+          value={darkCards ? 1 : 0}
+          min={0}
+          max={1}
+          onChange={(value: number) => setDarkCards(!!value)}
         />
       </div>
 
@@ -75,6 +97,7 @@ const OveviewRoute: FC = () => {
         Row / col slider controls 
         @TODO Extract this to layout component / global UI state
       */}
+
       <div
         style={{
           position: "fixed",
@@ -93,7 +116,6 @@ const OveviewRoute: FC = () => {
         >
           Cols: {cols}
         </div>
-        {/* A wrapper around <input type=range />] */}
         <Slider
           value={cols}
           min={1}
