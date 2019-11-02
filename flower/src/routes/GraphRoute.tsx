@@ -17,8 +17,8 @@ const graph = {
   layoutOptions: {
     "elk.algorithm": "layered"
   },
-  children: randomNodes(40, { width: 200, height: 105 }),
-  edges: randomEdges(40)
+  children: randomNodes(20, { width: 200, height: 105 }),
+  edges: randomEdges(20)
 };
 
 const GraphRoute: FC = () => {

@@ -1,3 +1,19 @@
+// https://github.com/d3/d3-shape#lines
+
+import { line, curveCardinal } from "d3-shape";
+
+export const sectionLine = ({ startPoint, endPoint, bendPoints = [] }) => {
+  const makeLine = line().curve(curveCardinal.tension(0.92));
+  const start = [startPoint.x, startPoint.y];
+  const end = [endPoint.x, endPoint.y];
+
+  if (bendPoints.length) {
+    return makeLine([start, ...bendPoints.map(({ x, y }) => [x, y]), end]);
+  }
+
+  return makeLine([start, end]);
+};
+
 export const flatten = list =>
   list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
 

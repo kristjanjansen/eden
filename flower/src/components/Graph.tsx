@@ -1,22 +1,22 @@
 import React, { FC, useEffect, useState } from "react";
-import { line, curveCardinal } from "d3-shape";
 
 import GraphCard from "./GraphCard";
 import { useUiContext } from "../contexts/ui";
+import Slider from "./Slider";
+import GraphSvg from "./GraphSvg";
+import { sectionLine } from "../utils/utils";
 
-// https://github.com/d3/d3-shape#lines
+// const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
+//   const makeLine = line().curve(curveCardinal.tension(0.92));
+//   const start: [number, number] = [startPoint.x, startPoint.y];
+//   const end: [number, number] = [endPoint.x, endPoint.y];
 
-const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
-  const makeLine = line().curve(curveCardinal.tension(0.92));
-  const start: [number, number] = [startPoint.x, startPoint.y];
-  const end: [number, number] = [endPoint.x, endPoint.y];
+//   if (bendPoints.length) {
+//     return makeLine([start, ...bendPoints.map(({ x, y }: any) => [x, y]), end]);
+//   }
 
-  if (bendPoints.length) {
-    return makeLine([start, ...bendPoints.map(({ x, y }: any) => [x, y]), end]);
-  }
-
-  return makeLine([start, end]);
-};
+//   return makeLine([start, end]);
+// };
 
 const GraphHtml = ({ layout, zoom = 1 }: any) => {
   const { width, height, children, edges } = layout;
@@ -72,96 +72,6 @@ const GraphHtml = ({ layout, zoom = 1 }: any) => {
     </div>
   );
 };
-
-const GraphSvg = ({ layout }: any) => {
-  const { width, height, children, edges } = layout;
-  if (children)
-    return (
-      <svg width={width} height={height}>
-        {children &&
-          children.map(({ x, y, width, height }: any, i: number) => (
-            <g key={i}>
-              <rect
-                x={x}
-                y={y}
-                rx="5"
-                ry="5"
-                width={width}
-                height={height}
-                fill="white"
-              />
-              <text x={x + 10} y={y + 20}>
-                This is a {i + 1}th SVG box...
-              </text>
-            </g>
-          ))}
-        {edges &&
-          edges.map(({ sections }: any, i: number) => (
-            <g key={i}>
-              {sections.map((s: any, j: number) => (
-                <g key={j}>
-                  <path
-                    d={sectionLine(s) || ""}
-                    opacity="0.1"
-                    strokeWidth="3"
-                    stroke="black"
-                    fill="none"
-                  />
-                  <circle
-                    cx={s.startPoint.x}
-                    cy={s.startPoint.y}
-                    fill="none"
-                    stroke="royalblue"
-                    strokeWidth="2"
-                    opacity={0.6}
-                  />
-                  <circle
-                    cx={s.endPoint.x}
-                    cy={s.endPoint.y}
-                    r="4"
-                    fill="none"
-                    stroke="royalblue"
-                    strokeWidth="2"
-                    opacity={0.6}
-                  />
-                  {s.bendPoints &&
-                    s.bendPoints.map(({ x, y }: any, k: number) => (
-                      <circle
-                        key={k}
-                        cx={x}
-                        cy={y}
-                        r="4"
-                        fill="none"
-                        stroke="royalblue"
-                        strokeWidth="2"
-                        opacity={0.6}
-                      />
-                    ))}
-                </g>
-              ))}
-            </g>
-          ))}
-      </svg>
-    );
-  return <div></div>;
-};
-
-const Slider: FC<{
-  value?: number;
-  min?: number;
-  max?: number;
-  step?: number;
-  onChange?: Function;
-}> = ({ value = 0, min = 0, max = 100, step = 1, onChange = () => null }) => (
-  <input
-    type="range"
-    min={min}
-    max={max}
-    step={step}
-    value={value}
-    onChange={e => onChange(parseFloat(e.target.value))}
-  />
-);
 
 const Graph: FC<{ layout: any }> = ({ layout }) => {
   const [zoom, setZoom] = useState(1);
