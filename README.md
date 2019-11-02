@@ -12,7 +12,7 @@ Here is a quick code walkthrough:
 
 ### App.tsx
 
-**[/flower/src/App.tsx]](/flower/src/App.tsx)**
+[/flower/src/App.tsx](/flower/src/App.tsx)
 
 Project main entrypoint, uses `react-router` to set up three main routes.
 
@@ -39,6 +39,9 @@ _The_ view of the project. There is a lot of happening here:
 1.  A fake graph data with edges and nodes is generated in `./src/data/graph.ts`.
 
 2.  Graph data is passed to `elkjs` graph layout generator that interprets the input data and returns an enriched data with edge and node coordinates and the width and height of the graph layout.
+
+    More about https://github.com/OpenKieler/elkjs
+    Live demo of graph generation:https://observablehq.com/@tmcw/elk
 
 3.  The enriched graph data is passed to `<GraphLayoutHtml>` component that interprets the data and renders out an hybrid layout using SVG and HTML.
 
