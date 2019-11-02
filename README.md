@@ -41,7 +41,8 @@ _The_ view of the project. There is a lot of happening here:
 2.  Graph data is passed to `elkjs` graph layout generator that interprets the input data and returns an enriched data with edge and node coordinates and the width and height of the graph layout.
 
     More about https://github.com/OpenKieler/elkjs
-    Live demo of graph generation:https://observablehq.com/@tmcw/elk
+
+    Live demo of graph generation: https://observablehq.com/@tmcw/elk
 
 3.  The enriched graph data is passed to `<GraphLayoutHtml>` component that interprets the data and renders out an hybrid layout using SVG and HTML.
 
@@ -57,9 +58,13 @@ _The_ view of the project. There is a lot of happening here:
 
 6.  `<GraphCard />` displays node data. Node status is passed on to `<StatusIcon />` component.
 
-7.  `<StatusIcon />` has different presets for status display. By default statuses are displayed as UTF8 circles, except `status = 'processing` that is rendered by `<StatusSpinner>` component.
+7.  `<StatusIcon />` has different presets for status display. By default statuses are displayed as UTF8 circles, except `status = "processing"` that is rendered by `<StatusSpinner>` component.
 
-8.  `<StatusSpinner>` is using `cli-spinners` library and animates the CLI text-based spinners in HTML. It uses the CLI spinner source files to get the animation frames (UTF8 characters / emojis) and the delay between the frames. For animation, `useInterval` hook is used (based on [Dan Abramov article](https://overreacted.io/making-setinterval-declarative-with-react-hooks/)) that cycles thought the animation frames and displays the text-based spinner.
+8.  `<StatusSpinner>` is using https://github.com/sindresorhus/cli-spinners library and animates the CLI text-based spinners in HTML.
+
+    It uses the CLI spinner source files to get the animation frames (UTF8 characters / emojis) and the delay between the frames.
+
+    For animation, `useInterval` hook is used (based on [Dan Abramov article](https://overreacted.io/making-setinterval-declarative-with-react-hooks/)) that cycles thought the animation frames and displays the text-based spinner.
 
 ### LogRoute.tsx
 
@@ -77,11 +82,11 @@ Realtime log output simulation view.
 
 ## 2. Soil
 
-💻 Source: [/sol](/soil)
+💻 Source: [/soil](/soil)
 
-A CLI application prototype, implemented in Typescript and https://github.com/vadimdemedes/ink library.
+A CLI application prototype, implemented in Typescript and Ink library https://github.com/vadimdemedes/ink.
 
-It includes Hello World command made with React components and also a set of Mocha / Chai UI tests.
+It includes "Hello World" command made with React components and also a set of Mocha / Chai UI tests.
 
 ## 3. Trellis
 
@@ -97,8 +102,6 @@ The prototype includes three colors-related components (Garden colors, Flower pr
 
 # Related projects
 
-Some projects mentioned in the demo meeting:
-
 ### Prima CLI specs
 
 🚀 Demo https://prisma-specs.netlify.com/cli/init/starter-kit/
@@ -110,11 +113,11 @@ The spec uses MDX components that import CLI React components (based on Ink libr
 
 https://raw.githubusercontent.com/prisma/specs/master/cli/src/pages/init/starter-kit/index.mdx
 
-**Terminal wrapper powering it**
+**Term.js wrapper component powering it**
 
 https://github.com/prisma/specs/tree/master/cli/src/components/Terminal
 
-### Typeit
+### Typeit library
 
 https://typeitjs.com/
 
