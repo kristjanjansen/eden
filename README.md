@@ -10,9 +10,7 @@ Here is a quick code walkthrough:
 
 Project main entrypoint, uses `react-router` to set up three main routes.
 
-### [/flower/src/routes/OverviewRoute.tsx](/flower/src/routes/OverviewRoute.tsx)
-
-<mark>WIP</mark>
+### [/flower/src/routes/OverviewRoute.tsx](/flower/src/routes/OverviewRoute.tsx) &nbsp;<mark>&nbsp;WIP&nbsp;</mark>
 
 An project overview route.
 
@@ -24,7 +22,7 @@ The feature is implemented with a custom `/components/Slider` component and `use
 
 > See the `/flower/src/routes/OverviewRoute.tsx` code comments how the the slide control values are passed to the dynamic CSS grid.
 
-#### [/flower/src/routes/GraphRoute.tsx](/flower/src/routes/GraphRoute.tsx)
+### [/flower/src/routes/GraphRoute.tsx](/flower/src/routes/GraphRoute.tsx)
 
 **The key view in the project**, there is a lot of happening here.
 

@@ -3,15 +3,8 @@ import React, { FC, ReactNode, useState } from "react";
 import Layout from "../containers/Layout";
 import SimpleCard from "../components/SimpleCard";
 import Slider from "../components/Slider";
-import { any } from "../utils/utils";
 
-const cards = Array.from({ length: 20 }).map((_, i) => {
-  const height = any([1, 1, 1, 2]);
-  return {
-    title: `Card #${i} with ${height} rows of height`,
-    height
-  };
-});
+import { cards } from "../data/overview";
 
 const OveviewRoute: FC = () => {
   const [darkLayout, setDarkLayout] = useState(false);
@@ -48,7 +41,7 @@ const OveviewRoute: FC = () => {
           position: "relative"
         }}
       >
-        {/* Generate 20 cards with with the heights of either 1 or 2 rows */}
+        {/* Map generated card data to card components */}
         {cards.map(({ title, height }, i) => (
           <div key={i} style={{ gridRowEnd: `span ${height}` }}>
             <SimpleCard dark={darkCards}>{title}</SimpleCard>
@@ -141,7 +134,6 @@ const OveviewRoute: FC = () => {
         >
           Rows: {rows}
         </div>
-        {/* A wrapper around <input type=range />] */}
         <Slider
           value={rows}
           min={1}
