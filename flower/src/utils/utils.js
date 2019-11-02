@@ -2,7 +2,7 @@
 
 import { line, curveCardinal } from "d3-shape";
 
-export const sectionLine = ({ startPoint, endPoint, bendPoints = [] }) => {
+export const generateLine = ({ startPoint, endPoint, bendPoints = [] }) => {
   const makeLine = line().curve(curveCardinal.tension(0.92));
   const start = [startPoint.x, startPoint.y];
   const end = [endPoint.x, endPoint.y];

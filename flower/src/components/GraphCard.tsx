@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 
-import Status from "./Status";
+import StatusIcon from "./StatusIcon";
 
 import { gardenColors, colors, ansiColors } from "../styles/variables";
 import { useUiContext } from "../contexts/ui";
@@ -95,7 +95,7 @@ const GraphCard: FC<{
             fontFamily: "Inter, sans-serif"
           }}
         >
-          <Status status={status} />
+          <StatusIcon status={status} />
           &nbsp;{status}
         </div>
       </div>

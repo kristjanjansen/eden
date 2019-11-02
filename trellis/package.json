@@ -1,8 +1,8 @@
 {
-  "name": "next-gen-documentation",
+  "name": "trellis",
   "scripts": {
     "dev": "docz dev",
-    "build": "docz build --dest=\"public\""
+    "build": "docz build && mv .docz/dist public"
   },
   "dependencies": {
     "docz": "latest",

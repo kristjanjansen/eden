@@ -1,6 +1,6 @@
-## About
+# Eden &rarr; Soil
 
-Experimental CLI UI with Typescript, Ink and Mocha tests.
+Experimental CLI UI with Typescript, Ink framework and Mocha tests.
 
 ## Installation
 
@@ -21,7 +21,3 @@ npm link
 ```
 npm run test
 ```
-
-## Additional reading
-
-https://pantas.net/node_argument_parsers/

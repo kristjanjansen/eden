@@ -1,5 +1,5 @@
 import React from "react";
-import { sectionLine } from "../utils/utils";
+import { generateLine } from "../utils/utils";
 
 const GraphLayoutSvg = ({ layout }: any) => {
   const { width, height, children, edges } = layout;
@@ -32,7 +32,7 @@ const GraphLayoutSvg = ({ layout }: any) => {
               {sections.map((s: any, j: number) => (
                 <g key={j}>
                   <path
-                    d={sectionLine(s) || ""}
+                    d={generateLine(s) || ""}
                     opacity="0.1"
                     strokeWidth="3"
                     stroke="black"

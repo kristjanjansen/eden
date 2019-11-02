@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 
 import GraphCard from "./GraphCard";
 import { useUiContext } from "../contexts/ui";
-import { sectionLine } from "../utils/utils";
+import { generateLine } from "../utils/utils";
 
 const GraphLayoutHtml = ({ layout, zoom = 1 }: any) => {
   const { width, height, children, edges } = layout;
@@ -23,7 +23,7 @@ const GraphLayoutHtml = ({ layout, zoom = 1 }: any) => {
               {sections.map((s: any, j: number) => (
                 <path
                   key={j}
-                  d={sectionLine(s) || ""}
+                  d={generateLine(s) || ""}
                   opacity="0.1"
                   strokeWidth="3"
                   stroke="black"
