@@ -5,12 +5,23 @@ import SimpleCard from "../components/SimpleCard";
 import Slider from "../components/Slider";
 import { any } from "../utils/utils";
 
+const cards = Array.from({ length: 20 }).map((_, i) => {
+  const height = any([1, 1, 1, 2]);
+  return {
+    title: `Card #${i} with ${height} rows of height`,
+    height
+  };
+});
+
 const OveviewRoute: FC = () => {
+  const [dark, setDark] = useState(false);
+
   // By default use 6 × 6 grid layout
   const [cols, setCols] = useState(6);
   const [rows, setRows] = useState(6);
+
   return (
-    <Layout padded>
+    <Layout padded dark={dark}>
       <div
         style={{
           height: "100%",
@@ -37,16 +48,32 @@ const OveviewRoute: FC = () => {
         }}
       >
         {/* Generate 20 cards with with the heights of either 1 or 2 rows */}
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div style={{ gridRowEnd: `span ${any([1, 1, 2])}` }}>
-            <SimpleCard>Card #{i} with some output here</SimpleCard>
+        {cards.map(({ title, height }, i) => (
+          <div key={i} style={{ gridRowEnd: `span ${height}` }}>
+            <SimpleCard>{title}</SimpleCard>
           </div>
         ))}
       </div>
 
+      <div
+        style={{
+          position: "fixed",
+          left: "20px",
+          bottom: "20px",
+          width: "40px"
+        }}
+      >
+        <Slider
+          value={dark ? 1 : 0}
+          min={0}
+          max={1}
+          onChange={(value: number) => setDark(!!value)}
+        />
+      </div>
+
       {/*
-        Slider controls 
-        @TODO Extract this to Controls component
+        Row / col slider controls 
+        @TODO Extract this to layout component / global UI state
       */}
       <div
         style={{

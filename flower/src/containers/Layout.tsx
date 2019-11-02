@@ -11,21 +11,22 @@ const Layout: FC<{
   details?: any;
   padded?: boolean;
   showDetails?: boolean;
+  dark?: boolean;
   onClose?: Function;
 }> = ({
   children,
   padded = false,
   details = null,
   showDetails = false,
+  dark = false,
   onClose = () => null
 }) => {
-  const [dark, setDark] = useState(0);
   return (
     <div
       style={{
         display: "flex",
         height: "100vh",
-        background: dark ? colors.darkestGray : colors.lightestGray,
+        background: dark ? colors.darkestGray : "white",
         position: "relative"
       }}
     >
@@ -46,29 +47,13 @@ const Layout: FC<{
       {showDetails && (
         <div
           style={{
-            width: "500px",
+            width: "25vw",
             boxShadow: "-5px 0 10px rgba(0,0,0,0.1)"
           }}
         >
           <Details onClose={() => onClose()}>{details}</Details>
         </div>
       )}
-
-      <div
-        style={{
-          position: "fixed",
-          left: "20px",
-          bottom: "20px",
-          width: "40px"
-        }}
-      >
-        <Slider
-          value={dark}
-          min={0}
-          max={1}
-          onChange={(value: number) => setDark(value)}
-        />
-      </div>
     </div>
   );
 };

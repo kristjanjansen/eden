@@ -11,7 +11,7 @@ const Details: FC<{ children?: any; onClose?: Function }> = ({
           position: "absolute",
           top: "0px",
           right: "0px",
-          fontSize: "20px",
+          fontSize: "22px",
           cursor: "pointer",
           color: "gray",
           padding: "20px"

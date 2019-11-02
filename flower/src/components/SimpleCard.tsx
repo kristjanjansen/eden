@@ -19,7 +19,7 @@ const SimpleCard: FC<{
         padding: "10px",
         fontFamily: "Inter, sans-serif",
         fontWeight: 600,
-        fontSize: "20px",
+        fontSize: "14px",
         color: colors.lightGray,
         border: currentlyActive
           ? `2px solid ${gardenColors.gardenBlue}`
