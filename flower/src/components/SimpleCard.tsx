@@ -1,19 +1,17 @@
 import React, { FC, useState, useEffect } from "react";
 
 import { gardenColors, colors } from "../styles/variables";
+import { useUiContext } from "../contexts/ui";
 
 const SimpleCard: FC<{
   active?: boolean;
-  dark?: boolean;
   children?: any;
   onClick?: Function;
-}> = ({
-  active = false,
-  dark = false,
-  children = null,
-  onClick = () => null
-}) => {
+}> = ({ active = false, children = null, onClick = () => null }) => {
+  const [{ darkLayout: dark }] = useUiContext();
+
   const [currentlyActive, setCurrentlyActive] = useState(false);
+
   useEffect(() => setCurrentlyActive(active), [active]);
   return (
     <div

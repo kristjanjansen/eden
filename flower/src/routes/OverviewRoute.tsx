@@ -7,12 +7,15 @@ import Slider from "../components/Slider";
 import { cards } from "../data/overview";
 
 const OveviewRoute: FC = () => {
-  const [darkLayout, setDarkLayout] = useState(false);
-  const [darkCards, setDarkCards] = useState(false);
-
+  // Current number of columns and rows
   // By default use 6 × 6 grid layout
   const [cols, setCols] = useState(6);
   const [rows, setRows] = useState(6);
+
+  // Dark mode controls
+  // @TODO extract this to a global UI state context
+  const [darkLayout, setDarkLayout] = useState(false);
+  const [darkCards, setDarkCards] = useState(false);
 
   return (
     <Layout padded dark={darkLayout}>
@@ -44,7 +47,7 @@ const OveviewRoute: FC = () => {
         {/* Map generated card data to card components */}
         {cards.map(({ title, height }, i) => (
           <div key={i} style={{ gridRowEnd: `span ${height}` }}>
-            <SimpleCard dark={darkCards}>{title}</SimpleCard>
+            <SimpleCard>{title}</SimpleCard>
           </div>
         ))}
       </div>
@@ -54,7 +57,7 @@ const OveviewRoute: FC = () => {
         @TODO Extract this to layout component / global UI state
       */}
 
-      <div
+      {/* <div
         style={{
           position: "fixed",
           left: "20px",
@@ -68,9 +71,9 @@ const OveviewRoute: FC = () => {
           max={1}
           onChange={(value: number) => setDarkLayout(!!value)}
         />
-      </div>
+      </div> */}
 
-      <div
+      {/* <div
         style={{
           position: "fixed",
           left: "80px",
@@ -84,7 +87,7 @@ const OveviewRoute: FC = () => {
           max={1}
           onChange={(value: number) => setDarkCards(!!value)}
         />
-      </div>
+      </div> */}
 
       {/*
         Row / col slider controls 

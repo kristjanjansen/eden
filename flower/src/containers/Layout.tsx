@@ -5,6 +5,7 @@ import Details from "../components/Details";
 
 import { colors } from "../styles/variables";
 import Slider from "../components/Slider";
+import { useUiContext } from "../contexts/ui";
 
 const Layout: FC<{
   children?: any;
@@ -21,6 +22,8 @@ const Layout: FC<{
   dark = false,
   onClose = () => null
 }) => {
+  const [{ darkLayout }, dispatch] = useUiContext();
+
   return (
     <div
       style={{
@@ -54,6 +57,27 @@ const Layout: FC<{
           <Details onClose={() => onClose()}>{details}</Details>
         </div>
       )}
+      <div
+        style={{
+          position: "fixed",
+          left: "20px",
+          bottom: "20px",
+          width: "40px"
+        }}
+      >
+        {darkLayout}
+        <Slider
+          value={darkLayout ? 1 : 0}
+          min={0}
+          max={1}
+          onChange={(value: number) =>
+            dispatch({
+              type: "darkLayout",
+              darkLayout: !!value
+            })
+          }
+        />
+      </div>
     </div>
   );
 };
