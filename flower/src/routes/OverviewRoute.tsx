@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { FC, useState } from "react";
 
 import Layout from "../containers/Layout";
 import SimpleCard from "../components/SimpleCard";
