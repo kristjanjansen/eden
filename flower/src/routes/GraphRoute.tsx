@@ -6,6 +6,8 @@ import Graph from "../components/Graph";
 
 import { randomNodes, randomEdges } from "../data/graph";
 
+// https://github.com/OpenKieler/elkjs
+
 const elk = new ELK();
 
 const graph = {
@@ -13,8 +15,8 @@ const graph = {
   layoutOptions: {
     "elk.algorithm": "layered"
   },
-  children: randomNodes(20, { width: 200, height: 105 }),
-  edges: randomEdges(20)
+  children: randomNodes(40, { width: 200, height: 105 }),
+  edges: randomEdges(40)
 };
 
 const GraphRoute: FC = () => {

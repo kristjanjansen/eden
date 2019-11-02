@@ -6,7 +6,7 @@ import StatusSpinner from "./StatusSpinner";
 // https://github.com/sindresorhus/cli-spinners
 // http://jsfiddle.net/sindresorhus/2eLtsbey/embedded/result/
 
-const defaultStatuses = {
+const gardenStatuses = {
   pending: {
     color: ansiColors.cyan,
     character: "⌛"

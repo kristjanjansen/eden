@@ -1,5 +1,5 @@
 {
-  "name": "inkcli",
+  "name": "soil",
   "private": true,
   "bin": "index.ts",
   "scripts": {

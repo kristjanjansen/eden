@@ -4,8 +4,10 @@ import { line, curveCardinal } from "d3-shape";
 import GraphCard from "./GraphCard";
 import { colors } from "../styles/variables";
 
+// https://github.com/d3/d3-shape#lines
+
 const sectionLine = ({ startPoint, endPoint, bendPoints = [] }: any) => {
-  const makeLine = line().curve(curveCardinal.tension(0.95));
+  const makeLine = line().curve(curveCardinal.tension(0));
   const start: [number, number] = [startPoint.x, startPoint.y];
   const end: [number, number] = [endPoint.x, endPoint.y];
 
