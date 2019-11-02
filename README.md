@@ -1,6 +1,6 @@
-## The Eden project
+# The Eden project
 
-### 1. Flower
+## 1. Flower
 
 💻 Source: [/flower](/flower)
 
@@ -10,7 +10,7 @@ A dashbord prototype, implemented in `create-react-app --typescript`.
 
 Here is a quick code walkthrough:
 
-#### App.tsx
+### App.tsx
 
 **[/flower/src/App.tsx]](/flower/src/App.tsx)**
 
@@ -92,7 +92,7 @@ Docz is a documentation generation toolkit, based on Gatsby, Gatsby themes and M
 
 The prototype includes three colors-related components (Garden colors, Flower prototype colors and ANSI terminal colors), showing off how components can enrich the documentation exprience, link together different UI touchpoint codebases and codify design decisions and artifacts.
 
-## Related projects
+# Related projects
 
 Some projects mentioned in the demo meeting:
 
