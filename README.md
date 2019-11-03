@@ -14,7 +14,7 @@ Here is a quick code walkthrough:
 
 [/flower/src/App.tsx](/flower/src/App.tsx)
 
-Project main entrypoint, uses `react-router` to set up three main routes.
+Project main entrypoint uses `react-router` to set up three main routes.
 
 The router is wrapped into custom `UIProvider` (located in `./contexts/ui.js`) to provide a global state handling.
 
@@ -22,13 +22,13 @@ The router is wrapped into custom `UIProvider` (located in `./contexts/ui.js`) t
 
 [/flower/src/routes/OverviewRoute.tsx](/flower/src/routes/OverviewRoute.tsx)
 
-An project overview route.
+A project overview route.
 
-It is a live playground of CSS grid layout that provides a glimpse what the latest browser features can offer in terms of layout flexibilty and confirm that **there is no need for a third-party grid framework such as `flexgrid`**.
+It is a live playground of CSS grid layout that provides a glimpse of what the latest browser features can offer in terms of layout flexibility and confirm that **there is no need for a third-party grid framework such as `flexgrid`**.
 
-The cards on the page are randomy generated placeholders, generated in `./src/data/logs.js`
+The cards on the page are randomly generated placeholders, generated in `./src/data/overview.js`
 
-The slider controls on a page allow to change number and columns. The feature is implemented with a `<Slider>` component and `useState` hooks that pass the current `cols` and `rows` values to CSS grid parameters.
+The slider controls on a page allow changing numbers and columns. The feature is implemented with a `<Slider>` component and `useState` hooks that pass the current `cols` and `rows` values to CSS grid parameters.
 
 ### GraphRoute.tsx
 
@@ -36,7 +36,7 @@ The slider controls on a page allow to change number and columns. The feature is
 
 _The_ view of the project. There is a lot of happening here:
 
-1.  A fake graph data with edges and nodes is generated in `./src/data/graph.ts`.
+1.  A fake graph data with edges and nodes are generated in `./src/data/graph.ts`.
 
 2.  Graph data is passed to `elkjs` graph layout generator that interprets the input data and returns an enriched data with edge and node coordinates and the width and height of the graph layout.
 
@@ -44,11 +44,11 @@ _The_ view of the project. There is a lot of happening here:
 
     Live demo of graph generation: https://observablehq.com/@tmcw/elk
 
-3.  The enriched graph data is passed to `<GraphLayoutHtml>` component that interprets the data and renders out an hybrid layout using SVG and HTML.
+3.  The enriched graph data is passed to `<GraphLayoutHtml>` component that interprets the data and renders out a hybrid layout using SVG and HTML.
 
 4.  In `<GraphLayoutHtml>`, edges of the graph are rendered as SVG lines: the the path coordinates of each edge are passed to the `generateLine()` function (found in `./src/utils.js`) that is based on `d3.line()` SVG path generator.
 
-    Line coordinates are going through an addtional `d3.curveCardinal()` smoothening function with `tension` parameter that adjust the lines to be less "boxy".
+    Line coordinates are going through an additional `d3.curveCardinal()` smoothening function with a `tension` parameter that adjusts the lines to be less "boxy".
 
     See more about d3 line functions here https://github.com/d3/d3-shape#lines
 
@@ -72,7 +72,7 @@ _The_ view of the project. There is a lot of happening here:
 
 Realtime log output simulation view.
 
-1. A fake log data is generated in `/flower/src/data/logs.js`. It contains various structured log data (timestamp, message etc) and also a random `duration` value in milliseconds.
+1. A fake log data is generated in `/flower/src/data/logs.js`. It contains various structured log data (timestamp, message, etc) and also a random `duration` value in milliseconds.
 
 2. `<LogRoute>` component maps the log data to **array of promises** and resolves them serially using the `duration` value and passes log items to the `<Log>` component. This allows log display to feel more "real-life-like" where each new log item arrives in varying time offset.
 
@@ -84,9 +84,9 @@ Realtime log output simulation view.
 
 💻 Source: [/soil](/soil)
 
-A CLI application prototype, implemented in Typescript and Ink library https://github.com/vadimdemedes/ink.
+Soil is a CLI application prototype, implemented in Typescript and Ink library https://github.com/vadimdemedes/ink.
 
-It includes "Hello World" command made with React components and also a set of Mocha / Chai UI tests.
+It includes the "Hello World" command made with React components and also a set of Mocha / Chai UI tests.
 
 ## 3. Trellis
 
@@ -96,9 +96,9 @@ It includes "Hello World" command made with React components and also a set of M
 
 A documentation site prototype, implemented in Docz https://github.com/doczjs/docz.
 
-Docz is a documentation generation toolkit, based on Gatsby, Gatsby themes and MDX (Markdown combined with React application).
+Docz is a documentation generation toolkit based on Gatsby, Gatsby themes, and [MDX](https://mdxjs.com/) (Markdown combined with React components).
 
-The prototype includes three colors-related components (Garden colors, Flower prototype colors and ANSI terminal colors), showing off how components can enrich the documentation exprience, link together different UI touchpoint codebases and codify design decisions and artifacts.
+The prototype includes three colors-related components (Garden colors, Flower prototype colors, and ANSI terminal colors), showing off how components can enrich the documentation experience, link together different UI-related codebases, and codify visual design decisions.
 
 # Related projects
 
@@ -106,7 +106,7 @@ The prototype includes three colors-related components (Garden colors, Flower pr
 
 🚀 Demo https://prisma-specs.netlify.com/cli/init/starter-kit/
 
-The spec uses MDX components that import CLI React components (based on Ink library) that output ANSI terminal textdumps. These CLI components are passed on to into a
+The spec uses MDX components that import CLI React components (based on Ink library) that output ANSI terminal text dumps. These CLI components are passed on to into a
 [https://github.com/prisma/specs/tree/master/cli](term.js) terminal emulator in the browser to make sure the CLI components work the same way as they do in the real terminal.
 
 **The MDX source for the demo page above**
