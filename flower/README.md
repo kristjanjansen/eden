@@ -2,7 +2,7 @@
 
 A dashbord prototype.
 
-See the main [README.md][../readme.md]
+See the main [README.md](../readme.md)
 
 ## Installation
 

@@ -6,9 +6,11 @@ import GraphLayoutHtml from "../components/GraphLayoutHtml";
 import GraphLayoutSvg from "../components/GraphLayoutSvg";
 import Slider from "../components/Slider";
 
-import { randomNodes, randomEdges } from "../data/graph";
-
 import { useUiContext } from "../contexts/ui";
+
+import { randomGraph } from "../data/graph";
+
+const { nodes, edges } = randomGraph({ count: 20, width: 200, height: 105 });
 
 // https://github.com/OpenKieler/elkjs
 
@@ -19,13 +21,16 @@ const graph = {
   layoutOptions: {
     "elk.algorithm": "layered"
   },
-  children: randomNodes(20, { width: 200, height: 105 }),
-  edges: randomEdges(20)
+  children: nodes,
+  edges
 };
 
 const GraphRoute: FC = () => {
   const [layout, setLayout] = useState({ children: [] });
-  const [{ activeNodeIndex }, dispatch] = useUiContext();
+  const [{ activeNodeIndex }] = useUiContext();
+
+  // We generate the graph layout using elkjs
+  // and pass it to layout variable
 
   useEffect(() => {
     const generateGraph = async () => {
@@ -48,8 +53,14 @@ const GraphRoute: FC = () => {
       }
     >
       <GraphLayoutHtml layout={layout} zoom={zoom} />
+
+      {/* Uncomment the following rows to see the debug data */}
+
       {/* <GraphLayoutSvg layout={layout} /> */}
       {/* <pre>{JSON.stringify(layout, null, 2)}</pre> */}
+
+      {/* Columns / rows controls */}
+
       <div
         style={{
           position: "fixed",
