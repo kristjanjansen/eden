@@ -8,12 +8,12 @@ import { cards } from "../data/overview";
 
 const OveviewRoute: FC = () => {
   // Current number of columns and rows
-  // By default use 6 × 6 grid layout
+  // By default we use 6 × 6 grid layout
 
   const [cols, setCols] = useState(6);
   const [rows, setRows] = useState(6);
 
-  //
+  // Active card index to show the details pane
 
   const [activeCardIndex, setActiveCardIndex] = useState(-1);
 
@@ -61,6 +61,8 @@ const OveviewRoute: FC = () => {
           </div>
         ))}
       </div>
+
+      {/* Columns / rows controls */}
 
       <div
         style={{

@@ -5,25 +5,26 @@ const services = ["storage", "db", "backupdb", "store", "cache", "db2"];
 const states = ["build", "deploy", "run", "test"];
 const statuses = ["pending", "processing", "done", "cancelled", "error"];
 
-export const randomNodes = (count = 10, options) =>
-  Array.from({ length: count }).map((_, i) => ({
+export const randomGraph = (
+  options = { count: 10, width: 100, height: 100 }
+) => ({
+  nodes: Array.from({ length: options.count }).map((_, i) => ({
     id: `n${i + 1}`,
-    width: options ? options.width : 100,
-    height: options ? options.height : 100,
+    width: options.width,
+    height: options.height,
     module: any(modules),
     service: any(services),
     state: any(states),
     status: any(statuses)
-  }));
-
-export const randomEdges = (count = 10) =>
-  Array.from({ length: count })
+  })),
+  edges: Array.from({ length: options.count })
     .map((_, i) => {
-      const targetNode = random(1, count);
+      const targetNode = random(1, options.count);
       return {
         id: `e${i + 1}`,
         sources: [`n${i + 1}`],
         targets: targetNode !== i ? [`n${targetNode}`] : null
       };
     })
-    .filter(e => e.targets);
+    .filter(e => e.targets)
+});
