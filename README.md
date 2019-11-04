@@ -107,7 +107,7 @@ The prototype includes three colors-related components (Garden colors, Flower pr
 🚀 Demo https://prisma-specs.netlify.com/cli/init/starter-kit/
 
 The spec uses MDX components that import CLI React components (based on Ink library) that output ANSI terminal text dumps. These CLI components are passed on to into a
-[https://github.com/prisma/specs/tree/master/cli](term.js) terminal emulator in the browser to make sure the CLI components work the same way as they do in the real terminal.
+[https://github.com/chjj/term.js](term.js) terminal emulator in the browser to make sure the CLI components work the same way as they do in the real terminal.
 
 **The MDX source for the demo page above**
 
